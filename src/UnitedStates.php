@@ -13,7 +13,7 @@ class UnitedStates {
 		return 'United States';
 	}
 
-	public function getOfficialName(){
+	public function getFullName(){
 		return 'United States of America';
 	}
 }
