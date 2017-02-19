@@ -89,5 +89,17 @@ class UnitedStates {
 
 		return false;
 	}
+
+	public function isPhoneNumberValid($phoneNumber, $strict = false){
+		$simpleRegex = '/^(\+?1? ?)?((\(\d{3}\)|\d{3}))([-\. ])?\d{3}([-\. ])?\d{4}$/';
+
+		preg_match($simpleRegex, $phoneNumber, $matches);
+
+		if (isset($matches[0]) && $matches[0] === $phoneNumber){
+			return true;
+		}
+
+		return false;
+	}
 }
 

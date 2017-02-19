@@ -67,5 +67,33 @@ class UnitedStatesTest extends PHPUnit_Framework_TestCase {
 
 	}
 
+	public function testIsPhoneNumberValidSimpleFormat(){
+		$us = new \Awoods\World\UnitedStates();
+
+		$phoneGoodNumbersOnly = '2065551234';
+		$this->assertTrue($us->isPhoneNumberValid($phoneGoodNumbersOnly));
+
+		$phoneGoodNumbersWithHyphens = '206-555-1234';
+		$this->assertTrue($us->isPhoneNumberValid($phoneGoodNumbersWithHyphens));
+
+		$phoneGoodNumbersWithDots = '206.555.1234';
+		$this->assertTrue($us->isPhoneNumberValid($phoneGoodNumbersWithDots));
+
+		$phoneGoodNumbersWithSpaces = '206 555 1234';
+		$this->assertTrue($us->isPhoneNumberValid($phoneGoodNumbersWithSpaces));
+
+		$phoneGoodOneWithNumbersOnly = '12065551234';
+		$this->assertTrue($us->isPhoneNumberValid($phoneGoodOneWithNumbersOnly));
+
+		$phoneGoodPlusOneWithNumbersOnly = '+12065551234';
+		$this->assertTrue($us->isPhoneNumberValid($phoneGoodPlusOneWithNumbersOnly));
+
+		$phoneGoodOneWithParenFormat = '1 (206) 555-1234';
+		$this->assertTrue($us->isPhoneNumberValid($phoneGoodOneWithParenFormat));
+
+		$phoneGoodPlusOneWithParenFormat = '+1 (206) 555-1234';
+		$this->assertTrue($us->isPhoneNumberValid($phoneGoodPlusOneWithParenFormat));
+	}
+
 }
 
