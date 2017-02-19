@@ -93,6 +93,12 @@ class UnitedStatesTest extends PHPUnit_Framework_TestCase {
 
 		$phoneGoodPlusOneWithParenFormat = '+1 (206) 555-1234';
 		$this->assertTrue($us->isPhoneNumberValid($phoneGoodPlusOneWithParenFormat));
+
+		$phoneBadNineDigitsNumbersOnly = '206555123';
+		$this->assertFalse($us->isPhoneNumberValid($phoneBadNineDigitsNumbersOnly));
+
+		$phoneBadElevenDigitsNumbersOnly = '20655512345';
+		$this->assertFalse($us->isPhoneNumberValid($phoneBadElevenDigitsNumbersOnly));
 	}
 
 	public function testIsPhoneNumberValidStrictFormat() {
