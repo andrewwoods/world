@@ -95,5 +95,30 @@ class UnitedStatesTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue($us->isPhoneNumberValid($phoneGoodPlusOneWithParenFormat));
 	}
 
+	public function testIsPhoneNumberValidStrictFormat() {
+		$us = new \Awoods\World\UnitedStates();
+		$strict = true;
+
+		$phoneJimmyJohnsNumbersOnly = '2066239500';
+		$this->assertTrue($us->isPhoneNumberValid($phoneJimmyJohnsNumbersOnly, $strict));
+
+		$phoneBadPrefix411 = '4115551234';
+		$this->assertFalse($us->isPhoneNumberValid($phoneBadPrefix411, $strict));
+
+		$phoneBadPrefix611 = '6115551234';
+		$this->assertFalse($us->isPhoneNumberValid($phoneBadPrefix611, $strict));
+
+		$phoneBadPrefixReserved = '6915551234';
+		$this->assertFalse($us->isPhoneNumberValid($phoneBadPrefixReserved, $strict));
+
+		$phoneGoodWithDashes = '681-555-1234';
+		$this->assertFalse($us->isPhoneNumberValid($phoneGoodWithDashes, $strict));
+
+		$phoneGoodWithDashesWithCountry = '1-681-555-1234';
+		$this->assertFalse($us->isPhoneNumberValid($phoneGoodWithDashesWithCountry, $strict));
+
+		$phoneGoodWithDashesWithCountry = '+1-681-555-1234';
+		$this->assertFalse($us->isPhoneNumberValid($phoneGoodWithDashesWithCountry, $strict));
+	}
 }
 
