@@ -9,14 +9,31 @@ class UnitedStates {
 	public function __construct() {
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return 'United States';
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getFullName(){
 		return 'United States of America';
 	}
 
+	/**
+	 * Retrieve a list of US States
+	 *
+	 * Washington DC is a district, not a state, but sometimes it is included
+	 * in state select/drop-down lists.
+	 *
+	 *
+	 * @param bool $includeDC  determine if you want to include Washington DC
+	 *
+	 * @return array
+	 */
 	public function getStates($includeDC = false){
 		$data = [
 			'AL' => 'Alabama',
@@ -78,6 +95,20 @@ class UnitedStates {
 		return $data;
 	}
 
+
+	/**
+	 * Verify if the value provided looks like a valid ZIP code
+	 *
+	 * The postal code system used in the United States of America is called ZIP Code.
+	 * ZIP is abbreviation from Zone Improvement Program. US ZIP codes were introduced in 1963
+	 * to improve mail delivery, make it more efficiently, quickly and simplify it.
+	 *
+	 * @see http://www.zippostalcodes.com/postcodes/us/us-zip-codes-format/
+	 *
+	 * @param string $postalCode
+	 *
+	 * @return bool
+	 */
 	public function isPostalCodeValid($postalCode){
 		$matches = [];
 
@@ -90,6 +121,20 @@ class UnitedStates {
 		return false;
 	}
 
+
+	/**
+	 * Check if the phone number looks like a valid US phone number.
+	 *
+	 * There are 2 syntaxes - a simple or loose syntax, that checks for formatting only,
+	 * and a strict syntax which examines if digits in particular positions are invalid
+	 *
+	 * @see https://www.nationalnanpa.com/area_codes/index.html
+	 *
+	 * @param string $phoneNumber
+	 * @param bool $strict
+	 *
+	 * @return bool
+	 */
 	public function isPhoneNumberValid($phoneNumber, $strict = false){
 
 		if ($strict){
