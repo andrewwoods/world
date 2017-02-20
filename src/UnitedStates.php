@@ -4,7 +4,7 @@
  */
 namespace Awoods\World;
 
-class UnitedStates {
+class UnitedStates implements CountryInterface {
 
 	public function __construct() {
 	}
