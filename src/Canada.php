@@ -4,11 +4,15 @@
  */
 namespace Awoods\World;
 
+require_once "NorthAmericanPhoneNumberTrait.php";
+
 /**
  * Class Canada
  * @package Awoods\World
  */
 class Canada implements CountryInterface {
+
+	use NorthAmericanPhoneNumber;
 
 	/**
 	 * @return string
@@ -24,14 +28,6 @@ class Canada implements CountryInterface {
 		return 'Canada';
 	}
 
-	/**
-	 * @param string $phoneNumber
-	 * @param bool $strict
-	 * @return bool
-	 */
-	public function isPhoneNumberValid( $phoneNumber, $strict = false ) {
-		// TODO: Implement isPhoneNumberValid() method.
-	}
 
 	/**
 	 * Check if a postal code complies with the Canadian postal format
