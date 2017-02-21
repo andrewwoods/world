@@ -53,5 +53,25 @@ class CanadaTest extends PHPUnit_Framework_TestCase {
 		self::assertFalse( $canada->isPostalCodeValid('W0A 9X9'));
 		self::assertFalse( $canada->isPostalCodeValid('Z0A 9X9'));
 	}
+
+	public function testGetProvinces(){
+		$canada = new \Awoods\World\Canada();
+
+		$provinces = $canada->getProvinces();
+
+		self::assertEquals(13, count(array_keys($provinces)));
+		/*
+		 * CONSIDER: Should I add a test for every province code?
+		 */
+		// AB = Alberta, the first province alphabetically
+		self::assertTrue(isset($provinces['AB']));
+
+		// YT = Yukon, the last province alphabetically
+		self::assertTrue(isset($provinces['YT']));
+
+		// AZ = Arizona, it should not be found
+		self::assertFalse(isset($provinces['AZ']));
+
+	}
 }
 
