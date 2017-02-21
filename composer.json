@@ -2,6 +2,7 @@
     "name": "awoods/world",
     "description": "interact with data from places around the world - the states in the US, the provinces in Canada, validate phone numbers, validate zipcodes/postal codes",
     "license": "MIT",
+    "type": "library",
     "keywords": ["locations", "geography", "postal codes", "zipcodes", "phone numbers"],
     "authors": [
         {
