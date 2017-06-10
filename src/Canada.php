@@ -4,7 +4,6 @@
  */
 namespace Awoods\World;
 
-require_once "NorthAmericanPhoneNumberTrait.php";
 
 /**
  * Class Canada
@@ -28,24 +27,35 @@ class Canada implements CountryInterface {
 		return 'Canada';
 	}
 
+    /**
+     * @return array
+     */
 	public function getProvinces(){
 		return [
-			'AB' => 'Alberta',
-			'BC' => 'British Columbia',
-			'MB' => 'Manitoba',
-			'NB' => 'New Brunswick',
-			'NL' => 'Newfoundland and Labrador',
-			'NT' => 'Northwest Territories',
-			'NS' => 'Nova Scotia',
-			'NU' => 'Nunavut',
-			'ON' => 'Ontario',
-			'PE' => 'Prince Edward Island',
-			'QC' => 'Quebec',
-			'SK' => 'Saskatchewan',
-			'YT' => 'Yukon',
+            'AB' => 'Alberta',
+            'BC' => 'British Columbia',
+            'MB' => 'Manitoba',
+            'NB' => 'New Brunswick',
+            'NL' => 'Newfoundland and Labrador',
+            'NS' => 'Nova Scotia',
+            'ON' => 'Ontario',
+            'PE' => 'Prince Edward Island',
+            'QC' => 'Quebec',
+            'SK' => 'Saskatchewan',
 		];
-
 	}
+
+    /**
+     * @return array
+     */
+    public function getTerritories(){
+        return [
+            'NT' => 'Northwest Territories',
+            'NU' => 'Nunavut',
+            'YT' => 'Yukon'
+        ];
+    }
+
 
 	/**
 	 * Check if a postal code complies with the Canadian postal format
