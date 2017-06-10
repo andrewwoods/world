@@ -3,9 +3,7 @@
  * Use this file to add ability to get your test to use your application code
  */
 
-# require __DIR__ . '/vendor/autoload.php';
-
-require_once "MultiLoader.php";
+require_once 'vendor/autoload.php';
 
 /**
  * Register for the SPL autoload
@@ -26,5 +24,4 @@ function multiAutoload($class)
     $loader->loadSrcDirectory($class, $srcPath, 'Awoods/World');
 }
 
-spl_autoload_register('multiAutoload');
 
