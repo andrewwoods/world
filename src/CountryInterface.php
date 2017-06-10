@@ -1,20 +1,21 @@
 <?php
 /**
- * @package Awoods/World
+ * @package Awoods\World
  */
 namespace Awoods\World;
 
-interface CountryInterface {
+interface CountryInterface
+{
 
-	/**
-	 * @return string
-	 */
-	public function getName();
+    /**
+     * @return string
+     */
+    public function getName();
 
-	/**
-	 * @return string
-	 */
-	public function getFullName();
+    /**
+     * @return string
+     */
+    public function getFullName();
 
 }
 
