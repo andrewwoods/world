@@ -1,14 +1,19 @@
 <?php
 /**
- *
+ * @package Awoods\World
  */
 
+use Awoods\World\CountryFactory;
+
+/**
+ * Class CountryFactoryTest
+ */
 class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 
 	public function testCreateUnitedStatesWithISO3166Alpha2Code(){
 		$expected = 'UnitedStates';
 
-		$factory = new \Awoods\World\CountryFactory();
+		$factory = new CountryFactory();
 		$us = $factory->create('US');
 
 		$this->assertContains($expected, get_class($us));
@@ -32,6 +37,24 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertContains($expected, get_class($us));
 	}
+
+    public function testCreateCanadaWithISO3166Alpha2Code(){
+        $expected = 'Canada';
+
+        $factory = new \Awoods\World\CountryFactory();
+        $ca = $factory->create('CA');
+
+        $this->assertContains($expected, get_class($ca));
+    }
+
+    public function testCreateCanadaWithISO3166NumericCode(){
+        $expected = 'Canada';
+
+        $factory = new \Awoods\World\CountryFactory();
+        $ca = $factory->create(124);
+
+        $this->assertContains($expected, get_class($ca));
+    }
 
 	/**
 	 * @expectedException UnexpectedValueException

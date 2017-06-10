@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Awoods/World
+ * @package Awoods\World
  */
 
 namespace Awoods\World;
@@ -27,6 +27,13 @@ class CountryFactory {
 	        case  840:
                 return new UnitedStates();
                 break;
+
+            case 'CA':
+            case 'CAN':
+            case  124:
+                return new Canada();
+                break;
+
             default:
             	throw new \UnexpectedValueException('You have provided an invalid country code');
                 break;
