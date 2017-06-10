@@ -4,7 +4,6 @@
  */
 namespace Awoods\World;
 
-require_once 'NorthAmericanPhoneNumberTrait.php';
 
 /**
  * Class UnitedStates
@@ -12,7 +11,7 @@ require_once 'NorthAmericanPhoneNumberTrait.php';
  */
 class UnitedStates implements CountryInterface {
 
-	use \Awoods\World\NorthAmericanPhoneNumber;
+	use NorthAmericanPhoneNumber;
 
 	/**
 	 * UnitedStates constructor.
