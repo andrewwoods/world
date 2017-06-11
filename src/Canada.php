@@ -36,6 +36,22 @@ class Canada implements CountryInterface {
 	}
 
     /**
+     * Return a combined list of provinces and territories
+     *
+     * @return array
+     */
+    public function getLocalityList()
+    {
+        $provinces   = $this->getProvinces();
+        $territories = $this->getTerritories();
+
+        $all = array_merge($provinces, $territories);
+        sort($all);
+
+        return $all;
+    }
+
+    /**
      * List all the canadian provinces.
      *
      * @return array

@@ -39,7 +39,17 @@ class UnitedStates implements CountryInterface {
 		return 'United States of America';
 	}
 
-	/**
+    /**
+     * Return a list of all states plus Washington DC
+     *
+     * @return array
+     */
+	public function getLocalityList()
+    {
+        return $this->getStates(true);
+    }
+
+    /**
 	 * Retrieve a list of US States
 	 *
 	 * Washington DC is a district, not a state, but sometimes it is included

@@ -73,5 +73,15 @@ class CanadaTest extends PHPUnit_Framework_TestCase {
 		self::assertFalse(isset($provinces['AZ']));
 
 	}
+
+
+    public function testGetLocalityList(){
+        $canada = new \Awoods\World\Canada();
+
+        $provinces = $canada->getLocalityList();
+
+        self::assertEquals(13, count(array_keys($provinces)));
+    }
+
 }
 
