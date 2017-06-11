@@ -1,19 +1,23 @@
 <?php
 /**
- * @package Awoods/World
+ * @package Awoods\World
  */
 namespace Awoods\World;
 
 
 /**
- * Class Canada
- * @package Awoods\World
+ * Class Canada.
+ *
  */
 class Canada implements CountryInterface {
 
 	use NorthAmericanPhoneNumber;
 
 	/**
+     * Returns the common name of the country.
+     *
+     * The name that people would use in everyday conversation.
+     *
 	 * @return string
 	 */
 	public function getName() {
@@ -21,6 +25,10 @@ class Canada implements CountryInterface {
 	}
 
 	/**
+     * Returns the official name of the country.
+     *
+     * The name that the government would use.
+     *
 	 * @return string
 	 */
 	public function getFullName() {
@@ -28,6 +36,8 @@ class Canada implements CountryInterface {
 	}
 
     /**
+     * List all the canadian provinces.
+     *
      * @return array
      */
 	public function getProvinces(){
@@ -46,6 +56,8 @@ class Canada implements CountryInterface {
 	}
 
     /**
+     * List of canadian territories
+     *
      * @return array
      */
     public function getTerritories(){

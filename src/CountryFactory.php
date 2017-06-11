@@ -1,17 +1,26 @@
 <?php
 /**
+ * The CountryFactory is used to create Country objects
+ *
  * @package Awoods\World
  */
-
 namespace Awoods\World;
 
+/**
+ * Class CountryFactory
+ *
+ * @package Awoods\World
+ */
 class CountryFactory {
 
 	/**
+     * Retrieve a country object from an country code
+     *
 	 * @throws \UnexpectedValueException
-	 * @param $countryCode
+     *
+	 * @param string|int $countryCode an unique identifier to represent a country
 	 *
-	 * @return UnitedStates
+	 * @return CountryInterface
 	 *
 	 */
     public function create($countryCode){

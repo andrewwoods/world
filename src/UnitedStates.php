@@ -1,13 +1,13 @@
 <?php
 /**
- * @package awoods\world
+ * @package Awoods\World
  */
 namespace Awoods\World;
 
 
 /**
- * Class UnitedStates
- * @package Awoods\World
+ * Class UnitedStates.
+ *
  */
 class UnitedStates implements CountryInterface {
 
@@ -20,6 +20,10 @@ class UnitedStates implements CountryInterface {
 	}
 
 	/**
+     * Returns the common name of the country.
+     *
+     * The name that people would use in everyday conversation.
+     *
 	 * @return string
 	 */
 	public function getName(){
@@ -27,6 +31,8 @@ class UnitedStates implements CountryInterface {
 	}
 
 	/**
+     * Returns the official name of the country.
+     *
 	 * @return string
 	 */
 	public function getFullName(){

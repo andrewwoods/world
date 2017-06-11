@@ -6,10 +6,11 @@ namespace Awoods\World;
 
 /**
  * Trait NorthAmericanPhoneNumber
- * @package Awoods\World
+ *
  */
 trait NorthAmericanPhoneNumber {
-		/**
+
+	/**
 	 * Check if the phone number looks like a valid US phone number.
 	 *
 	 * There are 2 syntaxes - a simple or loose syntax, that checks for formatting only,

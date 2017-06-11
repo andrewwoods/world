@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <phpdoc>
-	<title>My Project</title>
+	<title>World Documentation</title>
 	<!-- https://phpdoc.org/docs/latest/references/configuration.html -->
 	<parser>
 		<target>phpdocs</target>
