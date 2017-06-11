@@ -59,15 +59,15 @@ class CanadaTest extends PHPUnit_Framework_TestCase {
 
 		$provinces = $canada->getProvinces();
 
-		self::assertEquals(13, count(array_keys($provinces)));
+		self::assertEquals(10, count(array_keys($provinces)));
 		/*
 		 * CONSIDER: Should I add a test for every province code?
 		 */
 		// AB = Alberta, the first province alphabetically
 		self::assertTrue(isset($provinces['AB']));
 
-		// YT = Yukon, the last province alphabetically
-		self::assertTrue(isset($provinces['YT']));
+		// SK = Saskatchewan, the last province alphabetically
+		self::assertTrue(isset($provinces['SK']));
 
 		// AZ = Arizona, it should not be found
 		self::assertFalse(isset($provinces['AZ']));
