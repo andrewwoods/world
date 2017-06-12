@@ -48,4 +48,17 @@ class CountryFactory {
                 break;
         }
     }
+
+    /**
+     * Return list of the currently supported countries
+     *
+     * @return array
+     */
+    public function getList(){
+        return [
+            'US'  => 'United States',
+            'CA'  => 'Canada',
+        ];
+
+    }
 }

@@ -65,4 +65,30 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 		$badCountry = $factory->create('invalid');
 
 	}
+
+	public function testGetListCount(){
+	    $expected = 2;
+
+        $factory = new \Awoods\World\CountryFactory();
+        $countries = $factory->getList();
+
+        $this->assertEquals($expected, count(array_keys($countries)));
+    }
+
+    public function testGetListSupportsUnitedStates(){
+
+        $factory = new \Awoods\World\CountryFactory();
+        $countries = $factory->getList();
+
+        $this->assertTrue(isset($countries['US']));
+    }
+
+    public function testGetListSupportsCanada(){
+
+        $factory = new \Awoods\World\CountryFactory();
+        $countries = $factory->getList();
+
+        $this->assertTrue(isset($countries['CA']));
+    }
+
 }
