@@ -27,6 +27,33 @@ This is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 * United Kingdom
 * Mexico
 
+
+## Example Code
+
+```php
+require "../vendor/autoload.php";
+
+$countryFactory = new \Awoods\World\CountryFactory();
+
+$countries = $countryFactory->getList();
+
+foreach ($countries AS $code => $name) {
+    echo "\n";
+    echo "{$code} is the code for {$name}\n";
+
+    $country = $countryFactory->create($code);
+
+    echo "The official name for {$name} is '{$country->getFullName()}'\n";
+    echo "Here is a list of it's localities:\n";
+
+    foreach ($country->getLocalityList() AS $localityCode => $localityName) {
+
+        echo "* {$localityName} ({$localityCode})\n";
+    }
+}
+echo "\n";
+```
+
 ## Ideas for sections/pages
 
 * Traits
