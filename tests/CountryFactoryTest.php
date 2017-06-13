@@ -67,7 +67,7 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testGetListCount(){
-	    $expected = 2;
+	    $expected = 3;
 
         $factory = new \Awoods\World\CountryFactory();
         $countries = $factory->getList();

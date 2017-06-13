@@ -43,6 +43,12 @@ class CountryFactory {
                 return new Canada();
                 break;
 
+            case 'MX':
+            case 'MEX':
+            case 484:
+                return new Mexico();
+                break;
+
             default:
             	throw new \UnexpectedValueException('You have provided an invalid country code');
                 break;
@@ -58,6 +64,7 @@ class CountryFactory {
         return [
             'US'  => 'United States',
             'CA'  => 'Canada',
+            'MX'  => 'Mexico',
         ];
 
     }
