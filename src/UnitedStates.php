@@ -9,10 +9,9 @@ namespace Awoods\World;
  * Class UnitedStates.
  *
  */
-class UnitedStates implements CountryInterface {
+class UnitedStates implements CountryInterface, PostalCode {
 
 	use NorthAmericanPhoneNumber;
-
 	/**
 	 * UnitedStates constructor.
 	 */
@@ -138,16 +137,31 @@ class UnitedStates implements CountryInterface {
 	public function isPostalCodeValid($postalCode){
 		$matches = [];
 
-		preg_match('/\d{5}(?:-\d{4})?/',$postalCode, $matches);
+        preg_match('/^\d{5}(?:-\d{4})?$/', $postalCode, $matches);
 
-		if (isset($matches[0])){
-			return ($postalCode === $matches[0]);
+		if (isset($matches[0]) && $postalCode === $matches[0]){
+			return true;
 		}
 
 		return false;
 	}
 
 
+    /**
+     * Verify if the value provided looks like a valid ZIP code
+     *
+     * In the US, There are no specific digits that are illegal for a ZIP Code
+     * So this method is just a wrapper for isPostalCodeValid
+     *
+     * @see UnitedStates::isPostalCodeValid()
+     *
+     * @param string $postalCode
+     *
+     * @return bool
+     */
+    public function isPostalCodeStrictValid($postalCode){
+        return $this->isPostalCodeValid($postalCode);
+    }
 
 }
 
