@@ -9,7 +9,7 @@ namespace Awoods\World;
  * Class Canada.
  *
  */
-class Canada implements CountryInterface {
+class Canada implements CountryInterface, PostalCode {
 
 	use NorthAmericanPhoneNumber;
 
@@ -98,7 +98,8 @@ class Canada implements CountryInterface {
 	public function isPostalCodeValid( $postalCode ) {
 
 		$postalCode = strtoupper($postalCode);
-		$simpleRegex = '/^[ABCEGHJKLMNPRSTVXY]\d\w \d\w\d$/';
+
+        $simpleRegex = '/^\w\d\w \d\w\d$/';
 		preg_match($simpleRegex, $postalCode, $matches);
 
 		if (isset($matches[0]) && $postalCode === $matches[0]){
@@ -107,4 +108,30 @@ class Canada implements CountryInterface {
 
 		return false;
 	}
+
+
+
+    /**
+     * Check if a postal code complies with the Canadian postal format
+     *
+     * Only validates successfully with UPPER CASE letters. Also checks
+     * the correctness of character values.
+     *
+     * @see Canada::isPostalCodeValid()
+     *
+     * @param string $postalCode
+     * @return bool
+     */
+    public function isPostalCodeStrictValid( $postalCode ) {
+
+        $simpleRegex = '/^[ACEGHJKLMNPRSTVXY]\d\w \d\w\d$/';
+        preg_match($simpleRegex, $postalCode, $matches);
+
+        if (isset($matches[0]) && $postalCode === $matches[0]){
+            return true;
+        }
+
+        return false;
+    }
+
 }
