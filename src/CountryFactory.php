@@ -6,6 +6,8 @@
  */
 namespace Awoods\World;
 
+use UnexpectedValueException;
+
 /**
  * Class CountryFactory
  *
@@ -50,7 +52,7 @@ class CountryFactory {
                 break;
 
             default:
-            	throw new \UnexpectedValueException('You have provided an invalid country code');
+                throw new UnexpectedValueException('You have provided an invalid country code');
                 break;
         }
     }
