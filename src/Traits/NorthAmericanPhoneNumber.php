@@ -2,7 +2,8 @@
 /**
  * @package Awoods\World
  */
-namespace Awoods\World;
+namespace Awoods\World\Traits;
+
 
 /**
  * Trait NorthAmericanPhoneNumber

@@ -4,6 +4,7 @@
  */
 namespace Awoods\World;
 
+use Awoods\World\Traits\NorthAmericanPhoneNumber;
 
 /**
  * Class Canada.

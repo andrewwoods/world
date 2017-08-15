@@ -1,6 +1,6 @@
 <?php
 
-namespace Awoods\World;
+namespace Awoods\World\Traits;
 
 /**
  * Trait to handle postal codes for the United States
