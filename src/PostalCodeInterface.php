@@ -4,7 +4,7 @@ namespace Awoods\World;
 /**
  * @package Awoods\World
  */
-interface PostalCode
+interface PostalCodeInterface
 {
     /**
      * Check the correctness of the postal code using a simple interpretation

@@ -10,7 +10,7 @@ use Awoods\World\Traits\NorthAmericanPhoneNumber;
  * Class UnitedStates.
  *
  */
-class UnitedStates implements CountryInterface, PostalCode {
+class UnitedStates implements CountryInterface, PostalCodeInterface {
 
 	use NorthAmericanPhoneNumber;
 	/**
