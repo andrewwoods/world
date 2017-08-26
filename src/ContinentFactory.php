@@ -10,44 +10,52 @@ namespace Awoods\World;
  */
 class ContinentFactory
 {
+    const AFRICA_CODE = 'AF';
+    const ANTARCTICA_CODE = 'AN';
+    const ASIA_CODE = 'AS';
+    const EUROPE_CODE = 'EU';
+    const NORTH_AMERICA_CODE = 'NA';
+    const OCEANIA_CODE = 'OC';
+    const SOUTH_AMERICA_CODE = 'SA';
+
     public function get($code)
     {
         $code = strtoupper($code);
         switch ($code) {
-            case "AF":
+            case self::AFRICA_CODE:
             case "AFRICA":
-                return new Continent('AF', 'Africa');
+                return new Continent(self::AFRICA_CODE, 'Africa');
                 break;
 
-            case "AN":
+            case self::ANTARCTICA_CODE:
             case "ANTARCTICA":
-                return new Continent('AN', 'Antarctica');
+                return new Continent(self::ANTARCTICA_CODE, 'Antarctica');
                 break;
 
-            case "AS":
+            case self::ASIA_CODE:
             case "ASIA":
-                return new Continent('AS', 'Asia');
+                return new Continent(self::ASIA_CODE, 'Asia');
                 break;
 
-            case "EU":
+            case self::EUROPE_CODE:
             case "EUROPE":
-                return new Continent('EU', 'Europe');
+                return new Continent(self::EUROPE_CODE, 'Europe');
                 break;
 
-            case "NA":
+            case self::NORTH_AMERICA_CODE:
             case "NORTH AMERICA":
-                return new Continent('NA', 'North America');
+                return new Continent(self::NORTH_AMERICA_CODE, 'North America');
                 break;
 
-            case "OC":
+            case self::OCEANIA_CODE:
             case "OCEANIA":
-                return new Continent('OC', 'Oceania');
+                return new Continent(self::OCEANIA_CODE, 'Oceania');
                 break;
 
-            case "SA":
+            case self::SOUTH_AMERICA_CODE:
             case "SOUTH AMERICA":
             case "CENTRAL AMERICA":
-                return new Continent('SA', 'South and Central America');
+                return new Continent(self::SOUTH_AMERICA_CODE, 'South and Central America');
                 break;
 
             default:
