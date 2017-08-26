@@ -33,6 +33,35 @@ class CountryCreateCommand extends Command
     }
 
     protected function execute(InputInterface $input, OutputInterface $output){
+
+        $clean = $this->parse($input, $output);
+
+        $classTemplate = $this->getClassTemplate($clean);
+        $factoryTemplate = $this->getFactoryTemplate($clean);
+
+        $filename = $this->createFilename($clean['class-name']);
+        $isWritten = $this->writeFile($filename, $classTemplate);
+
+        if ($output->getVerbosity() >= OutputInterface::VERBOSITY_DEBUG){
+            $output->writeln('numeric: ' . $clean['numeric']);
+            $output->writeln('two-letter: ' . $clean['two-letter']);
+            $output->writeln('three-letter: ' . $clean['three-letter']);
+            $output->writeln('ClassName: ' . $clean['class-name']);
+            $output->writeln('Official Name: ' . $clean['official-name']);
+            $output->writeln('Common Name: ' . $clean['common-name']);
+            $output->writeln('Written: ' . $isWritten);
+        }
+
+        if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
+            $output->writeln('');
+            $output->writeln('filename: ' . $filename);
+            $output->writeln('');
+        }
+
+        $output->writeln($factoryTemplate);
+    }
+
+    protected function parse($input, $output){
         $clean = [];
 
         $numeric = $input->getOption('numeric');
@@ -47,32 +76,38 @@ class CountryCreateCommand extends Command
         $clean['three-letter'] = strtoupper($threeLetter);
 
         $className = $input->getArgument('ClassName');
-        $clean['ClassName'] = filter_var($className, FILTER_SANITIZE_STRING);
+        $clean['class-name'] = filter_var($className, FILTER_SANITIZE_STRING);
 
         $officialName = $input->getArgument('OfficialName');
-        $clean['officialName'] = filter_var($officialName, FILTER_SANITIZE_STRING);
+        $clean['official-name'] = filter_var($officialName, FILTER_SANITIZE_STRING);
 
         $commonName = $input->getArgument('CommonName');
         $commonName = filter_var($commonName, FILTER_SANITIZE_STRING);
-        if ($commonName === null){
+        if ($commonName === null || $commonName === ''){
             $commonName = $officialName;
         }
-        $clean['commonName'] = $commonName;
+        $clean['common-name'] = $commonName;
 
-        $template = $this->getTemplate($clean);
-
-        $output->writeln('numeric: ' . $clean['numeric']);
-        $output->writeln('two-letter: ' . $clean['two-letter']);
-        $output->writeln('three-letter: ' . $clean['three-letter']);
-        $output->writeln('ClassName: ' . $className);
-        $output->writeln('Official Name: ' . $officialName);
-        $output->writeln('Common Name: ' . $commonName);
-        $output->writeln('');
-        $output->writeln($template);
-        $output->writeln('');
+        return $clean;
     }
 
-    protected function getTemplate($data = false){
+
+    protected function createFilename($className){
+        return dirname(__FILE__, 2) . "/{$className}.php";
+    }
+
+
+    protected function writeFile($filename, $contents){
+        $bytes = file_put_contents($filename, $contents);
+
+        if ($bytes === false){
+            return false;
+        }
+
+        return true;
+    }
+
+    protected function getClassTemplate($data = false){
 
         if ($data === false || ! is_array($data)){
             throw new InvalidArgumentException();
@@ -82,13 +117,12 @@ class CountryCreateCommand extends Command
 /**
  * This is part of the World project. 
  * 
- * 
  */
 
 /**
- * Class {$data['ClassName']}.
+ * Class {$data['class-name']}.
  */
-class {$data['ClassName']} implements CountryInterface
+class {$data['class-name']} implements CountryInterface
 {
   
     /**
@@ -108,7 +142,7 @@ class {$data['ClassName']} implements CountryInterface
      */
 	public function getName()
 	{
-		return '{$data['commonName']}';
+		return '{$data['common-name']}';
 	}
 
 
@@ -119,7 +153,7 @@ class {$data['ClassName']} implements CountryInterface
 	 */
 	public function getOfficialName()
 	{
-		return '{$data['officialName']}';
+		return '{$data['official-name']}';
 	}
 
 
@@ -145,4 +179,23 @@ CLASS_TEMPLATE;
         return $classTemplate;
     }
 
+    protected function getFactoryTemplate($data = false)
+    {
+        if ($data === false){
+            throw new InvalidArgumentException();
+        }
+
+        $factoryTemplate = <<<FACTORY
+
+            case '{$data['two-letter']}':
+	        case '{$data['three-letter']}':
+	        case {$data['numeric']}:
+                return new {$data['class-name']}();
+                break;
+
+FACTORY;
+
+        return $factoryTemplate;
+
+    }
 }
