@@ -4,6 +4,7 @@
  *
  * @package Awoods\World
  */
+
 namespace Awoods\World;
 
 use UnexpectedValueException;
@@ -13,29 +14,43 @@ use UnexpectedValueException;
  *
  * @package Awoods\World
  */
-class CountryFactory {
-
-	/**
+class CountryFactory
+{
+    /**
      * Retrieve a country object from an country code
      *
-	 * @throws \UnexpectedValueException
+     * @throws \UnexpectedValueException
      *
-	 * @param string|int $countryCode an unique identifier to represent a country
-	 *
-	 * @return CountryInterface
-	 *
-	 */
-    public function create($countryCode){
-        switch ($countryCode){
-        	/*
-        	 * English Name, French Name, Alpha-2 Code, Alpha-3 Code, Numeric Code
-        	 *
-        	 * United States of America (the),  États-Unis d'Amérique (les), US, USA, 840
-        	 * United Kingdom of Great Britain and Northern Ireland (the), Royaume-Uni de Grande-Bretagne et d'Irlande du Nord (le), GB, GBR, 826
-        	 */
+     * @param string|int $countryCode an unique identifier to represent a country
+     *
+     * @return SubdivisionInterface
+     *
+     */
+    public function create($countryCode)
+    {
+        switch ($countryCode) {
+            /*
+             * Africa
+             */
+
+            /*
+             * Antarctica
+             */
+
+            /*
+             * Asia
+             */
+
+            /*
+             * Europe
+             */
+
+            /*
+             * North America
+             */
             case 'US':
-	        case 'USA':
-	        case  840:
+            case 'USA':
+            case  840:
                 return new UnitedStates();
                 break;
 
@@ -51,6 +66,14 @@ class CountryFactory {
                 return new Mexico();
                 break;
 
+            /*
+             * Oceania
+             */
+
+            /*
+             * South and Central America
+             */
+
             default:
                 throw new UnexpectedValueException('You have provided an invalid country code');
                 break;
@@ -62,12 +85,12 @@ class CountryFactory {
      *
      * @return array
      */
-    public function getList(){
+    public function getList()
+    {
         return [
-            'US'  => 'United States',
-            'CA'  => 'Canada',
-            'MX'  => 'Mexico',
+            'US' => new UnitedStates(),
+            'CA' => new Canada(),
+            'MX' => new Mexico(),
         ];
-
     }
 }

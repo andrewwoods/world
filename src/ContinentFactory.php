@@ -18,7 +18,7 @@ class ContinentFactory
     const OCEANIA_CODE = 'OC';
     const SOUTH_AMERICA_CODE = 'SA';
 
-    public function get($code)
+    public static function get($code)
     {
         $code = strtoupper($code);
         switch ($code) {

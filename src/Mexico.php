@@ -7,32 +7,24 @@ namespace Awoods\World;
  *
  * @package Awoods\World
  */
-class Mexico implements CountryInterface
+class Mexico extends Country implements SubdivisionInterface
 {
-    /**
-     * The common name of the country. The name the average person would use
-     *
-     * @return string
-     */
-    public function getName()
+    public function __construct()
     {
-       return 'Mexico';
-    }
-
-    /**
-     * Provides the official name of the country
-     *
-     * @return string
-     */
-    public function getFullName()
-    {
-        return 'United Mexican States';
+        parent::__construct(
+            'MX',
+            'MEX',
+            484,
+            'Mexico',
+            'United Mexican States',
+            ContinentFactory::get(ContinentFactory::NORTH_AMERICA_CODE)
+        );
     }
 
     /**
      * @see https://en.wikipedia.org/wiki/Template:Mexico_State-Abbreviation_Codes
      */
-    public function getLocalityList()
+    public function getSubdivisionList()
     {
         $data = [
            'AG' => 'Aguascalientes',

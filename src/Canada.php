@@ -10,38 +10,28 @@ use Awoods\World\Traits\NorthAmericanPhoneNumber;
  * Class Canada.
  *
  */
-class Canada implements CountryInterface, PostalCodeInterface {
+class Canada extends Country implements SubdivisionInterface, PostalCodeInterface {
 
 	use NorthAmericanPhoneNumber;
 
-	/**
-     * Returns the common name of the country.
-     *
-     * The name that people would use in everyday conversation.
-     *
-	 * @return string
-	 */
-	public function getName() {
-		return 'Canada';
-	}
-
-	/**
-     * Returns the official name of the country.
-     *
-     * The name that the government would use.
-     *
-	 * @return string
-	 */
-	public function getFullName() {
-		return 'Canada';
-	}
+	public function __construct()
+    {
+        parent::__construct(
+            'CA',
+            'CAN',
+            124,
+            'Canada',
+            'Canada',
+            ContinentFactory::get(ContinentFactory::NORTH_AMERICA_CODE)
+        );
+    }
 
     /**
      * Return a combined list of provinces and territories
      *
      * @return array
      */
-    public function getLocalityList()
+    public function getSubdivisionList()
     {
         $provinces   = $this->getProvinces();
         $territories = $this->getTerritories();

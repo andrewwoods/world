@@ -47,22 +47,4 @@ class Continent
     {
         return $this->name;
     }
-
-    /**
-     * @param CountryInterface $country
-     *
-     * @return void
-     */
-    public function addCountry(CountryInterface $country) : void
-    {
-        $this->countries[] = $country;
-    }
-
-    /**
-     * @return CountryInterface[]
-     */
-    public function getCountries()
-    {
-        return $this->countries;
-    }
 }
