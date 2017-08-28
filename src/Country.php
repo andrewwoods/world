@@ -17,8 +17,8 @@ class Country
     /** @var string */
     protected $iso3LetterCode;
 
-    /** @var int */
-    protected $isoNumericCode;
+    /** @var string */
+    protected $isoCurrencyCode;
 
     /** @var string */
     protected $commonName;
@@ -34,7 +34,7 @@ class Country
      *
      * @param string $iso2LetterCode the 2 character code from ISO 3166-2
      * @param string $iso3LetterCode the 3 character code from ISO 3166-3
-     * @param int $isoNumericCode the numeric code from ISO 3166
+     * @param string $isoCurrencyCode the numeric code from ISO 4217
      * @param string $commonName The country name most people use
      * @param string $officialName The country's official name
      * @param Continent $continent
@@ -42,14 +42,14 @@ class Country
     public function __construct(
         string $iso2LetterCode,
         string $iso3LetterCode,
-        int $isoNumericCode,
+        string $isoCurrencyCode,
         string $commonName,
         string $officialName,
         Continent $continent
     ) {
         $this->code = $iso2LetterCode;
         $this->iso3LetterCode = $iso3LetterCode;
-        $this->isoNumericCode = $isoNumericCode;
+        $this->isoCurrencyCode = $isoCurrencyCode;
         $this->commonName = $commonName;
         $this->officialName = $officialName;
         $this->continent = $continent;
@@ -74,9 +74,9 @@ class Country
     /**
      * @return int
      */
-    public function getIsoNumericCode() : int
+    public function getIsoCurrencyCode() : int
     {
-        return $this->isoNumericCode;
+        return $this->isoCurrencyCode;
     }
 
     /**
