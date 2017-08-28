@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: awoods
- * Date: 2017-08-19
- * Time: 06:20
+ * This is part of the World project.
+ *
+ * @license https://opensource.org/licenses/mit-license.php MIT
  */
 
 namespace Awoods\World\ConsoleCommands;
@@ -264,11 +263,14 @@ class CountryLoaderCommand extends Command
         }
 
         $classTemplate = <<<CLASS_TEMPLATE
+<?php
 /**
- * This is part of the World project. 
+ * This is part of the World project.
  *
  * @license https://opensource.org/licenses/mit-license.php MIT
  */
+
+namespace Awoods\World;
 
 /**
  * Class {$className}.
@@ -277,7 +279,7 @@ class {$className} extends Country
 {
     /**
      * Constructor.
-     */ 
+     */
     public function __construct()
     {
         parent::__construct(
