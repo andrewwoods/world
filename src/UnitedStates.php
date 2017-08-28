@@ -1,6 +1,8 @@
 <?php
 /**
- * @package Awoods\World
+ * This is part of the World project.
+ *
+ * @license https://opensource.org/licenses/mit-license.php MIT
  */
 
 namespace Awoods\World;
@@ -9,7 +11,6 @@ use Awoods\World\Traits\NorthAmericanPhoneNumber;
 
 /**
  * Class UnitedStates.
- *
  */
 class UnitedStates extends Country implements SubdivisionInterface, PostalCodeInterface
 {
@@ -17,14 +18,13 @@ class UnitedStates extends Country implements SubdivisionInterface, PostalCodeIn
 
     /**
      * UnitedStates constructor.
-     *
      */
     public function __construct()
     {
         parent::__construct(
             'US',
             'USA',
-            840,
+            'USD',
             'United States',
             'United States of America',
             ContinentFactory::get(ContinentFactory::NORTH_AMERICA_CODE)

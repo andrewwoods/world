@@ -1,22 +1,28 @@
 <?php
+/**
+ * This is part of the World project.
+ *
+ * @license https://opensource.org/licenses/mit-license.php MIT
+ */
 
 namespace Awoods\World;
 
 /**
- * Represents the country of Mexico
- *
- * @package Awoods\World
+ * Class Mexico.
  */
 class Mexico extends Country implements SubdivisionInterface
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         parent::__construct(
             'MX',
             'MEX',
-            484,
+            'MXN',
             'Mexico',
-            'United Mexican States',
+            'Mexico',
             ContinentFactory::get(ContinentFactory::NORTH_AMERICA_CODE)
         );
     }

@@ -1,6 +1,8 @@
 <?php
 /**
- * @package Awoods\World
+ * This is part of the World project.
+ *
+ * @license https://opensource.org/licenses/mit-license.php MIT
  */
 namespace Awoods\World;
 
@@ -8,7 +10,6 @@ use Awoods\World\Traits\NorthAmericanPhoneNumber;
 
 /**
  * Class Canada.
- *
  */
 class Canada extends Country implements SubdivisionInterface, PostalCodeInterface {
 
@@ -19,7 +20,7 @@ class Canada extends Country implements SubdivisionInterface, PostalCodeInterfac
         parent::__construct(
             'CA',
             'CAN',
-            124,
+            'CAD',
             'Canada',
             'Canada',
             ContinentFactory::get(ContinentFactory::NORTH_AMERICA_CODE)
