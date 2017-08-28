@@ -266,7 +266,8 @@ class CountryLoaderCommand extends Command
         $classTemplate = <<<CLASS_TEMPLATE
 /**
  * This is part of the World project. 
- * 
+ *
+ * @license https://opensource.org/licenses/mit-license.php MIT
  */
 
 /**
@@ -274,7 +275,6 @@ class CountryLoaderCommand extends Command
  */
 class {$className} extends Country
 {
-  
     /**
      * Constructor.
      */ 
@@ -289,7 +289,6 @@ class {$className} extends Country
             ContinentFactory::get({$data['continent_constant']})
         );
     }
-   
 }
 
 CLASS_TEMPLATE;
