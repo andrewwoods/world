@@ -25,6 +25,7 @@ class CountryLoaderCommand extends Command
         $this->setName("country:loader")
              ->setDescription("Create a PHP class for the Country.")
              ->addOption('continent', 'c', InputOption::VALUE_REQUIRED,'Filter by Continent')
+             ->addOption('factory', 'f', InputOption::VALUE_NONE,'Display factory code')
              ->addArgument('csv-filename', InputArgument::REQUIRED, 'the name of your PHP class');
     }
 
@@ -38,14 +39,33 @@ class CountryLoaderCommand extends Command
         $continent = $input->getOption('continent');
         $options['continent'] = filter_var($continent, FILTER_SANITIZE_STRING);
 
+        $factory = $input->getOption('factory');
+        $options['factory'] = filter_var($factory, FILTER_SANITIZE_STRING);
+
         $output->writeln('File: ' . $options['csv-filename']);
 
         $data = $this->parseFile($csvFile, $options);
 
-        // $this->generateReport($data);
-
         $this->generateClassFiles($data);
+
+        if (isset($options['factory'])){
+            $this->generateFactoryCode($data);
+        }
     }
+
+    protected function generateFactoryCode($data)
+    {
+        $output = '';
+        foreach ($data as $row){
+            $className = $this->generateClassName($row['name']);
+            $classTemplate = $this->getFactoryTemplate($className, $row);
+
+            $output .= $classTemplate;
+        }
+
+        echo $output;
+    }
+
 
     protected function generateReport($data)
     {
@@ -298,18 +318,18 @@ CLASS_TEMPLATE;
         return $classTemplate;
     }
 
-    protected function getFactoryTemplate($data = false)
+    protected function getFactoryTemplate($className, $data = false)
     {
         if ($data === false) {
             throw new InvalidArgumentException();
         }
 
+
         $factoryTemplate = <<<FACTORY
 
-            case '{$data['two-letter']}':
-	        case '{$data['three-letter']}':
-	        case {$data['numeric']}:
-                return new {$data['class-name']}();
+            case '{$data['iso3166_1_alpha_2']}':
+            case '{$data['iso3166_1_alpha_3']}':
+                return new {$className}();
                 break;
 
 FACTORY;
