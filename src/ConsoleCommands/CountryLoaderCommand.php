@@ -95,6 +95,7 @@ class CountryLoaderCommand extends Command
 
     protected function generateClassName($name)
     {
+        $name = $this->removeSpecialCharacters($name);
         $name = $this->removeAmpersands($name);
         $name = $this->removeExtraSpaces($name);
         $name = ucwords($name, " \t\r\n\f\v\.");
@@ -103,6 +104,29 @@ class CountryLoaderCommand extends Command
         $className = preg_replace('/\s+/','', $name);
 
         return $className;
+    }
+
+    private function removeSpecialCharacters($content){
+        $foreign = [
+            'ç',
+            'ô',
+            'd',
+            'ã',
+            'í',
+            'é',
+            'Å',
+        ];
+        $english = [
+            'c',
+            'o',
+            'd',
+            'a',
+            'i',
+            'e',
+            'A',
+        ];
+
+        return str_replace($foreign, $english, $content);
     }
 
     private function removeExtraSpaces($content){
