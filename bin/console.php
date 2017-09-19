@@ -7,15 +7,14 @@
  */
 
 $projectPath = dirname(dirname(__FILE__ ));
+
 require_once $projectPath . '/vendor/autoload.php';
-require_once $projectPath . '/ConsoleCommands/CountryCreateCommand.php';
-require_once $projectPath . '/ConsoleCommands/CountryLoaderCommand.php';
 
 use Awoods\World\ConsoleCommands\CountryCreateCommand;
 use Awoods\World\ConsoleCommands\CountryLoaderCommand;
 use Symfony\Component\Console\Application;
 
-$application = new Application('World Country Creation Tool');
+$application = new Application('World Application');
 
 // Register your commands
 $application->add(new CountryCreateCommand());
