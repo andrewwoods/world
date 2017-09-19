@@ -19,13 +19,74 @@ This is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Currently Supported Countries
 
-* United States
-* Canada
+* **North America**
+  - Anguilla
+  - Antigua & Barbuda
+  - Aruba
+  - Bahamas
+  - Barbados
+  - Belize
+  - Bermuda
+  - British Virgin Islands
+  - Canada
+  - Caribbean Netherlands
+  - Cayman Islands
+  - Costa Rica
+  - Cuba
+  - Curaçao
+  - Dominica
+  - Dominican Republic
+  - El Salvador
+  - Greenland
+  - Grenada
+  - Guadeloupe
+  - Guatemala
+  - Haiti
+  - Honduras
+  - Jamaica
+  - Martinique
+  - Mexico
+  - Montserrat
+  - Nicaragua
+  - Panama
+  - Puerto Rico
+  - Sint Maarten
+  - St. Barthélemy
+  - St. Kitts & Nevis
+  - St. Lucia
+  - St. Martin
+  - St. Pierre & Miquelon
+  - St. Vincent & Grenadines
+  - Trinidad & Tobago
+  - Turks & Caicos Islands
+  - U.S. Virgin Islands
+  - United States
 
 ## Upcoming Countries
 
-* United Kingdom
-* Mexico
+* **South America**
+
+  - todo
+
+* **Europe**
+
+  - todo
+
+* **Asia**
+
+  - todo
+
+* **Africa**
+
+  - todo
+
+* **Oceania**
+
+  - todo
+
+* **Antarctica**
+
+  - todo
 
 
 ## Example Code
