@@ -8,6 +8,9 @@
 namespace Awoods\World;
 
 use UnexpectedValueException;
+use Awoods\World\NA\UnitedStates;
+use Awoods\World\NA\Canada;
+use Awoods\World\NA\Mexico;
 
 /**
  * Class CountryFactory
@@ -48,44 +51,101 @@ class CountryFactory
             /*
              * North America
              */
+
             case 'AI':
             case 'AIA':
-                return new Anguilla();
+                return new Country(
+                    'AI',
+                    'AIA',
+                    'XCD',
+                    'Anguilla',
+                    'Anguilla',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'AG':
             case 'ATG':
-                return new AntiguaAndBarbuda();
+                return new Country(
+                    'AG',
+                    'ATG',
+                    'XCD',
+                    'Antigua & Barbuda',
+                    'Antigua and Barbuda',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'AW':
             case 'ABW':
-                return new Aruba();
+                return new Country(
+                    'AW',
+                    'ABW',
+                    'AWG',
+                    'Aruba',
+                    'Aruba',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'BS':
             case 'BHS':
-                return new Bahamas();
+                return new Country(
+                    'BS',
+                    'BHS',
+                    'BSD',
+                    'Bahamas',
+                    'Bahamas',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'BB':
             case 'BRB':
-                return new Barbados();
+                return new Country(
+                    'BB',
+                    'BRB',
+                    'BBD',
+                    'Barbados',
+                    'Barbados',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'BZ':
             case 'BLZ':
-                return new Belize();
+                return new Country(
+                    'BZ',
+                    'BLZ',
+                    'BZD',
+                    'Belize',
+                    'Belize',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'BM':
             case 'BMU':
-                return new Bermuda();
+                return new Country(
+                    'BM',
+                    'BMU',
+                    'BMD',
+                    'Bermuda',
+                    'Bermuda',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'VG':
             case 'VGB':
-                return new BritishVirginIslands();
+                return new Country(
+                    'VG',
+                    'VGB',
+                    'USD',
+                    'British Virgin Islands',
+                    'British Virgin Islands',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'CA':
@@ -95,82 +155,194 @@ class CountryFactory
 
             case 'BQ':
             case 'BES':
-                return new CaribbeanNetherlands();
+                return new Country(
+                    'BQ',
+                    'BES',
+                    'USD',
+                    'Caribbean Netherlands',
+                    'Bonaire, Sint Eustatius and Saba',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'KY':
             case 'CYM':
-                return new CaymanIslands();
+                return new Country(
+                    'KY',
+                    'CYM',
+                    'KYD',
+                    'Cayman Islands',
+                    'Cayman Islands',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'CR':
             case 'CRI':
-                return new CostaRica();
+                return new Country(
+                    'CR',
+                    'CRI',
+                    'CRC',
+                    'Costa Rica',
+                    'Costa Rica',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'CU':
             case 'CUB':
-                return new Cuba();
+                return new Country(
+                    'CU',
+                    'CUB',
+                    'CUP',
+                    'Cuba',
+                    'Cuba',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'CW':
             case 'CUW':
-                return new Curacao();
+                return new Country(
+                    'CW',
+                    'CUW',
+                    'ANG',
+                    'Curaçao',
+                    'Curaçao',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'DM':
             case 'DMA':
-                return new Dominica();
+                return new Country(
+                    'DM',
+                    'DMA',
+                    'XCD',
+                    'Dominica',
+                    'Dominica',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'DO':
             case 'DOM':
-                return new DominicanRepublic();
+                return new Country(
+                    'DO',
+                    'DOM',
+                    'DOP',
+                    'Dominican Republic',
+                    'Dominican Republic',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'SV':
             case 'SLV':
-                return new ElSalvador();
+                return new Country(
+                    'SV',
+                    'SLV',
+                    'USD',
+                    'El Salvador',
+                    'El Salvador',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'GL':
             case 'GRL':
-                return new Greenland();
+                return new Country(
+                    'GL',
+                    'GRL',
+                    'DKK',
+                    'Greenland',
+                    'Greenland',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'GD':
             case 'GRD':
-                return new Grenada();
+                return new Country(
+                    'GD',
+                    'GRD',
+                    'XCD',
+                    'Grenada',
+                    'Grenada',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'GP':
             case 'GLP':
-                return new Guadeloupe();
+                return new Country(
+                    'GP',
+                    'GLP',
+                    'EUR',
+                    'Guadeloupe',
+                    'Guadeloupe',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'GT':
             case 'GTM':
-                return new Guatemala();
+                return new Country(
+                    'GT',
+                    'GTM',
+                    'GTQ',
+                    'Guatemala',
+                    'Guatemala',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'HT':
             case 'HTI':
-                return new Haiti();
+                return new Country(
+                    'HT',
+                    'HTI',
+                    'USD',
+                    'Haiti',
+                    'Haiti',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'HN':
             case 'HND':
-                return new Honduras();
+                return new Country(
+                    'HN',
+                    'HND',
+                    'HNL',
+                    'Honduras',
+                    'Honduras',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'JM':
             case 'JAM':
-                return new Jamaica();
+                return new Country(
+                    'JM',
+                    'JAM',
+                    'JMD',
+                    'Jamaica',
+                    'Jamaica',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'MQ':
             case 'MTQ':
-                return new Martinique();
+                return new Country(
+                    'MQ',
+                    'MTQ',
+                    'EUR',
+                    'Martinique',
+                    'Martinique',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'MX':
@@ -180,72 +352,170 @@ class CountryFactory
 
             case 'MS':
             case 'MSR':
-                return new Montserrat();
+                return new Country(
+                    'MS',
+                    'MSR',
+                    'XCD',
+                    'Montserrat',
+                    'Montserrat',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'NI':
             case 'NIC':
-                return new Nicaragua();
+                return new Country(
+                    'NI',
+                    'NIC',
+                    'NIO',
+                    'Nicaragua',
+                    'Nicaragua',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'PA':
             case 'PAN':
-                return new Panama();
+                return new Country(
+                    'PA',
+                    'PAN',
+                    'USD',
+                    'Panama',
+                    'Panama',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'PR':
             case 'PRI':
-                return new PuertoRico();
+                return new Country(
+                    'PR',
+                    'PRI',
+                    'USD',
+                    'Puerto Rico',
+                    'Puerto Rico',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'SX':
             case 'SXM':
-                return new SintMaarten();
+                return new Country(
+                    'SX',
+                    'SXM',
+                    'ANG',
+                    'Sint Maarten',
+                    'Sint Maarten (Dutch part)',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'BL':
             case 'BLM':
-                return new StBarthelemy();
+                return new Country(
+                    'BL',
+                    'BLM',
+                    'EUR',
+                    'St. Barthélemy',
+                    'Saint Barthélemy',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'KN':
             case 'KNA':
-                return new StKittsAndNevis();
+                return new Country(
+                    'KN',
+                    'KNA',
+                    'XCD',
+                    'St. Kitts & Nevis',
+                    'Saint Kitts and Nevis',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'LC':
             case 'LCA':
-                return new StLucia();
+                return new Country(
+                    'LC',
+                    'LCA',
+                    'XCD',
+                    'St. Lucia',
+                    'Saint Lucia',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'MF':
             case 'MAF':
-                return new StMartin();
+                return new Country(
+                    'MF',
+                    'MAF',
+                    'EUR',
+                    'St. Martin',
+                    'Saint Martin (French part)',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'PM':
             case 'SPM':
-                return new StPierreAndMiquelon();
+                return new Country(
+                    'PM',
+                    'SPM',
+                    'EUR',
+                    'St. Pierre & Miquelon',
+                    'Saint Pierre and Miquelon',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'VC':
             case 'VCT':
-                return new StVincentAndGrenadines();
+                return new Country(
+                    'VC',
+                    'VCT',
+                    'XCD',
+                    'St. Vincent & Grenadines',
+                    'Saint Vincent and the Grenadines',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'TT':
             case 'TTO':
-                return new TrinidadAndTobago();
+                return new Country(
+                    'TT',
+                    'TTO',
+                    'TTD',
+                    'Trinidad & Tobago',
+                    'Trinidad and Tobago',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'TC':
             case 'TCA':
-                return new TurksAndCaicosIslands();
+                return new Country(
+                    'TC',
+                    'TCA',
+                    'USD',
+                    'Turks & Caicos Islands',
+                    'Turks and Caicos Islands',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'VI':
             case 'VIR':
-                return new USVirginIslands();
+                return new Country(
+                    'VI',
+                    'VIR',
+                    'USD',
+                    'U.S. Virgin Islands',
+                    'United States Virgin Islands',
+                    ContinentFactory::get('NA')
+                );
                 break;
 
             case 'US':
