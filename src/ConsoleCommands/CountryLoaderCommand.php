@@ -8,12 +8,12 @@
 namespace Awoods\World\ConsoleCommands;
 
 use Awoods\World\ContinentFactory;
+use Awoods\World\CountryFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use InvalidArgumentException;
 
 
@@ -57,8 +57,13 @@ class CountryLoaderCommand extends Command
     {
         $output = '';
         foreach ($data as $row){
-            $className = $this->generateClassName($row['name']);
+            $nameGenerator = new ClassNameGenerator();
+            $className = $nameGenerator->generate($row['name']);
+
             $classTemplate = $this->getFactoryTemplate($className, $row);
+            if (CountryFactory::hasPostalAndPhoneSupport($row['iso3166_1_alpha_2'])){
+                $classTemplate = $this->getExtendedClassFactoryTemplate($className, $row);
+            }
 
             $output .= $classTemplate;
         }
@@ -99,66 +104,23 @@ class CountryLoaderCommand extends Command
     protected function generateClassFiles($data)
     {
         foreach ($data as $row){
-            $className = $this->generateClassName($row['name']);
-            $classTemplate = $this->getClassTemplate($className, $row);
-            // echo "name={$row['name']} className={$className}\n";
+            if (CountryFactory::hasPostalAndPhoneSupport($row['iso3166_1_alpha_2'])) {
+                $nameGenerator = new ClassNameGenerator();
+                $className = $nameGenerator->generate($row['name']);
 
-            $filename = $this->createFilename($className);
-            $isWritten = $this->writeFile($filename, $classTemplate);
+                $classTemplate = $this->getExtendedClassTemplate($className, $row);
 
-            $writtenMessage = ($isWritten) ? 'was written successfully' : 'could not be written';
+                $file = new CountryFile();
+                $filename = $file->createCountryFilename($className, $row['continent']);
+                $isWritten = $file->write($filename, $classTemplate);
 
-            echo "{$filename} {$writtenMessage} for {$row['name']}\n";
+                $writtenMessage = ($isWritten) ? 'was written successfully' : 'could not be written';
+
+                echo "{$filename} {$writtenMessage} for {$row['name']}\n";
+            }
         }
     }
 
-    protected function generateClassName($name)
-    {
-        $name = $this->removeSpecialCharacters($name);
-        $name = $this->removeAmpersands($name);
-        $name = $this->removeExtraSpaces($name);
-        $name = ucwords($name, " \t\r\n\f\v\.");
-        $name = $this->removePeriods($name);
-
-        $className = preg_replace('/\s+/','', $name);
-
-        return $className;
-    }
-
-    private function removeSpecialCharacters($content){
-        $foreign = [
-            'ç',
-            'ô',
-            'd',
-            'ã',
-            'í',
-            'é',
-            'Å',
-        ];
-        $english = [
-            'c',
-            'o',
-            'd',
-            'a',
-            'i',
-            'e',
-            'A',
-        ];
-
-        return str_replace($foreign, $english, $content);
-    }
-
-    private function removeExtraSpaces($content){
-        return preg_replace('/\s+/',' ', $content);
-    }
-
-    private function removeAmpersands($content){
-        return preg_replace('/\&+/','And', $content);
-    }
-
-    private function removePeriods($content){
-        return preg_replace('/\.+/','', $content);
-    }
 
     protected function parseFile($filename, $options)
     {
@@ -230,23 +192,6 @@ class CountryLoaderCommand extends Command
         return $data;
     }
 
-    protected function createFilename($className)
-    {
-        return dirname(__FILE__, 2) . "/{$className}.php";
-    }
-
-
-    protected function writeFile($filename, $content)
-    {
-        $bytes = file_put_contents($filename, $content);
-
-        if ($bytes === false) {
-            return false;
-        }
-
-        return true;
-    }
-
     protected function getClassTemplate($className, $data = false)
     {
 
@@ -254,33 +199,6 @@ class CountryLoaderCommand extends Command
             throw new InvalidArgumentException();
         }
 
-        switch ($data['continent'])
-        {
-            case 'AF':
-                $data['continent_constant'] = 'ContinentFactory::AFRICA_CODE';
-                break;
-            case 'AN':
-                $data['continent_constant'] = 'ContinentFactory::ANTARCTICA_CODE';
-                break;
-            case 'AS':
-                $data['continent_constant'] = 'ContinentFactory::ASIA_CODE';
-                break;
-            case 'EU':
-                $data['continent_constant'] = 'ContinentFactory::EUROPE_CODE';
-                break;
-            case 'NA':
-                $data['continent_constant'] = 'ContinentFactory::NORTH_AMERICA_CODE';
-                break;
-            case 'OC':
-                $data['continent_constant'] = 'ContinentFactory::OCEANIA_CODE';
-                break;
-            case 'SA':
-                $data['continent_constant'] = 'ContinentFactory::SOUTH_AMERICA_CODE';
-                break;
-            default:
-                $data['continent_constant'] = '';
-                break;
-        }
 
         $classTemplate = <<<CLASS_TEMPLATE
 <?php
@@ -308,7 +226,48 @@ class {$className} extends Country
             '{$data['iso4217_alpha_code']}',
             '{$data['name']}',
             '{$data['official_name_en']}',
-            ContinentFactory::get({$data['continent_constant']})
+            ContinentFactory::get({$data['continent']})
+        );
+    }
+}
+
+CLASS_TEMPLATE;
+
+        return $classTemplate;
+    }
+
+    protected function getExtendedClassTemplate($className, $data){
+    $nameSpace = "Awoods\\World\\" . $data['continent'];
+        $classTemplate = <<<CLASS_TEMPLATE
+<?php
+/**
+ * This is part of the World project.
+ *
+ * @license https://opensource.org/licenses/mit-license.php MIT
+ */
+
+namespace {$nameSpace};
+
+use Awoods\World\Country;
+use Awoods\World\ContinentFactory;
+
+/**
+ * Class {$className}.
+ */
+class {$className} extends Country
+{
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct(
+            '{$data['iso3166_1_alpha_2']}',
+            '{$data['iso3166_1_alpha_3']}',
+            '{$data['iso4217_alpha_code']}',
+            '{$data['name']}',
+            '{$data['official_name_en']}',
+            ContinentFactory::get("{$data['continent']}")
         );
     }
 }
@@ -324,6 +283,30 @@ CLASS_TEMPLATE;
             throw new InvalidArgumentException();
         }
 
+        $factoryTemplate = <<<FACTORY
+
+            case '{$data['iso3166_1_alpha_2']}':
+            case '{$data['iso3166_1_alpha_3']}':
+                return new Country(
+                    '{$data['iso3166_1_alpha_2']}',
+                    '{$data['iso3166_1_alpha_3']}',
+                    '{$data['iso4217_alpha_code']}',
+                    '{$data['name']}',
+                    '{$data['official_name_en']}',
+                    ContinentFactory::get('{$data['continent']}')
+                );
+                break;
+
+FACTORY;
+
+        return $factoryTemplate;
+    }
+
+    protected function getExtendedClassFactoryTemplate($className, $data = false)
+    {
+        if ($data === false) {
+            throw new InvalidArgumentException();
+        }
 
         $factoryTemplate = <<<FACTORY
 
@@ -335,6 +318,5 @@ CLASS_TEMPLATE;
 FACTORY;
 
         return $factoryTemplate;
-
     }
 }

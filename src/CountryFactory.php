@@ -550,4 +550,15 @@ class CountryFactory
             'MX' => new Mexico(),
         ];
     }
+
+    public static function hasPostalAndPhoneSupport($iso3166alpha2code)
+    {
+        $support = [
+            'CA',
+            'MX',
+            'US',
+        ];
+
+        return (in_array($iso3166alpha2code, $support)) ? true : false;
+    }
 }
