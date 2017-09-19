@@ -1,8 +1,11 @@
 <?php
 /**
- * This is part of the World project.
+ * This file is part of the World package.
  *
- * @license https://opensource.org/licenses/mit-license.php MIT
+ * (c) Andrew Woods <andrew@andrewwoods.net>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Awoods\World\NA;

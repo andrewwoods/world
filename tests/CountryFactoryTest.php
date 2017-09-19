@@ -1,6 +1,11 @@
 <?php
 /**
- * @package Awoods\World
+ * This file is part of the World package.
+ *
+ * (c) Andrew Woods <andrew@andrewwoods.net>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 use Awoods\World\CountryFactory;
