@@ -3,25 +3,28 @@
 /**
  * @namespace Awoods\World
  */
+
+use Awoods\World\NA\Mexico;
+
 class MexicoTest extends PHPUnit_Framework_TestCase
 {
    public function testGetName(){
 
-       $mexico = new \Awoods\World\Mexico();
+       $mexico = new Mexico();
 
-       $this->assertEquals('Mexico', $mexico->getName());
+       $this->assertEquals('Mexico', $mexico->getCommonName());
    }
 
    public function testGetFullName(){
-       $mexico = new \Awoods\World\Mexico();
+       $mexico = new Mexico();
 
-       $this->assertEquals('United Mexican States', $mexico->getFullName());
+       $this->assertEquals('Mexico', $mexico->getOfficialName());
    }
 
    public function testGetLocalityList(){
-        $mexico = new \Awoods\World\Mexico();
+        $mexico = new Mexico();
 
-        $states = $mexico->getLocalityList();
+        $states = $mexico->getSubdivisionList();
 
         $this->assertArrayHasKey('CA', $states);
         $this->assertEquals('Coahuila', $states['CA']);

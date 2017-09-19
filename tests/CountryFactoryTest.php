@@ -23,35 +23,18 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 	public function testCreateUnitedStatesWithISO3166Alpha3Code(){
 		$expected = 'UnitedStates';
 
-		$factory = new \Awoods\World\CountryFactory();
+		$factory = new CountryFactory();
 		$us = $factory->create('USA');
 
 		$this->assertContains($expected, get_class($us));
 	}
 
-	public function testCreateUnitedStatesWithISO3166NumericCode(){
-		$expected = 'UnitedStates';
-
-		$factory = new \Awoods\World\CountryFactory();
-		$us = $factory->create(840);
-
-		$this->assertContains($expected, get_class($us));
-	}
 
     public function testCreateCanadaWithISO3166Alpha2Code(){
         $expected = 'Canada';
 
-        $factory = new \Awoods\World\CountryFactory();
+        $factory = new CountryFactory();
         $ca = $factory->create('CA');
-
-        $this->assertContains($expected, get_class($ca));
-    }
-
-    public function testCreateCanadaWithISO3166NumericCode(){
-        $expected = 'Canada';
-
-        $factory = new \Awoods\World\CountryFactory();
-        $ca = $factory->create(124);
 
         $this->assertContains($expected, get_class($ca));
     }
@@ -61,7 +44,7 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testCreateWithIncorrectCode(){
 
-		$factory = new \Awoods\World\CountryFactory();
+		$factory = new CountryFactory();
 		$badCountry = $factory->create('invalid');
 
 	}
@@ -69,7 +52,7 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 	public function testGetListCount(){
 	    $expected = 3;
 
-        $factory = new \Awoods\World\CountryFactory();
+        $factory = new CountryFactory();
         $countries = $factory->getList();
 
         $this->assertEquals($expected, count(array_keys($countries)));
@@ -77,7 +60,7 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 
     public function testGetListSupportsUnitedStates(){
 
-        $factory = new \Awoods\World\CountryFactory();
+        $factory = new CountryFactory();
         $countries = $factory->getList();
 
         $this->assertTrue(isset($countries['US']));
@@ -85,7 +68,7 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 
     public function testGetListSupportsCanada(){
 
-        $factory = new \Awoods\World\CountryFactory();
+        $factory = new CountryFactory();
         $countries = $factory->getList();
 
         $this->assertTrue(isset($countries['CA']));

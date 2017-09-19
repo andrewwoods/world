@@ -1,5 +1,7 @@
 <?php
 
+use \Awoods\World\NA\Canada;
+
 /**
  * Unit tests for Canada
  *
@@ -8,7 +10,7 @@
 class CanadaTest extends PHPUnit_Framework_TestCase {
 
 	public function testIsPostalValidSimpleFormat(){
-		$canada = new \Awoods\World\Canada();
+		$canada = new Canada();
 
 		/*
 		 * Known Good Cases
@@ -50,7 +52,7 @@ class CanadaTest extends PHPUnit_Framework_TestCase {
 
 
     public function testIsPostalStrictValid(){
-        $canada = new \Awoods\World\Canada();
+        $canada = new Canada();
 
         /*
          * Known Good Cases
@@ -103,7 +105,7 @@ class CanadaTest extends PHPUnit_Framework_TestCase {
 
 
 	public function testGetProvinces(){
-		$canada = new \Awoods\World\Canada();
+		$canada = new Canada();
 
 		$provinces = $canada->getProvinces();
 
@@ -124,9 +126,9 @@ class CanadaTest extends PHPUnit_Framework_TestCase {
 
 
     public function testGetLocalityList(){
-        $canada = new \Awoods\World\Canada();
+        $canada = new Canada();
 
-        $provinces = $canada->getLocalityList();
+        $provinces = $canada->getSubdivisionList();
 
         self::assertEquals(13, count(array_keys($provinces)));
     }

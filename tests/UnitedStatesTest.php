@@ -1,28 +1,31 @@
 <?php
 
+use Awoods\World\NA\UnitedStates;
+use Awoods\World\Country;
+
 class UnitedStatesTest extends PHPUnit_Framework_TestCase {
 
 	public function testGetName(){
 		$expected = 'United States';
 
-		$us = new Awoods\World\UnitedStates();
+		$us = new UnitedStates();
 
-		$this->assertEquals($expected, $us->getName());
+		$this->assertEquals($expected, $us->getCommonName());
 	}
 
 	public function testGetFullName(){
 		$expected = 'United States of America';
 
-		$us = new Awoods\World\UnitedStates();
+		$us = new UnitedStates();
 
-		$this->assertEquals($expected, $us->getFullName());
+		$this->assertEquals($expected, $us->getOfficialName());
 	}
 
 	public function testGetStates(){
 		$expectedTotal = 50;
 		$includeDC = false;
 
-		$us = new \Awoods\World\UnitedStates();
+		$us = new UnitedStates();
 
 		$this->assertEquals($expectedTotal, count($us->getStates($includeDC)));
 	}
@@ -31,13 +34,13 @@ class UnitedStatesTest extends PHPUnit_Framework_TestCase {
 		$expectedTotal = 51;
 
 		$includeDC = true;
-		$us = new \Awoods\World\UnitedStates();
+		$us = new UnitedStates();
 
 		$this->assertEquals($expectedTotal, count($us->getStates($includeDC)));
 	}
 
 	public function testIsPostalCodeValid(){
-		$us = new \Awoods\World\UnitedStates();
+		$us = new UnitedStates();
 
 		$goodSeattleZipcode = '98109';
 		$this->assertTrue($us->isPostalCodeValid($goodSeattleZipcode));
@@ -68,7 +71,7 @@ class UnitedStatesTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testIsPhoneNumberValidSimpleFormat(){
-		$us = new \Awoods\World\UnitedStates();
+		$us = new UnitedStates();
 
 		$phoneGoodNumbersOnly = '2065551234';
 		$this->assertTrue($us->isPhoneNumberValid($phoneGoodNumbersOnly));
@@ -102,7 +105,7 @@ class UnitedStatesTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testIsPhoneNumberValidStrictFormat() {
-		$us = new \Awoods\World\UnitedStates();
+		$us = new UnitedStates();
 		$strict = true;
 
 		$phoneJimmyJohnsNumbersOnly = '2066239500';
