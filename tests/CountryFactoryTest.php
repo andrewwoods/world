@@ -58,7 +58,7 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 	    $expected = 3;
 
         $factory = new CountryFactory();
-        $countries = $factory->getList();
+        $countries = $factory->getSupportedCountries();
 
         $this->assertEquals($expected, count(array_keys($countries)));
     }
@@ -66,7 +66,7 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
     public function testGetListSupportsUnitedStates(){
 
         $factory = new CountryFactory();
-        $countries = $factory->getList();
+        $countries = $factory->getSupportedCountries();
 
         $this->assertTrue(isset($countries['US']));
     }
@@ -74,7 +74,7 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
     public function testGetListSupportsCanada(){
 
         $factory = new CountryFactory();
-        $countries = $factory->getList();
+        $countries = $factory->getSupportedCountries();
 
         $this->assertTrue(isset($countries['CA']));
     }

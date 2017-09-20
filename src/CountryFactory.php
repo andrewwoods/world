@@ -542,7 +542,7 @@ class CountryFactory
      *
      * @return array
      */
-    public function getList()
+    public function getSupportedCountries()
     {
         return [
             'US' => new UnitedStates(),
@@ -562,12 +562,9 @@ class CountryFactory
      */
     public static function hasPostalAndPhoneSupport($iso3166alpha2code)
     {
-        $support = [
-            'CA',
-            'MX',
-            'US',
-        ];
+        $self = new self();
+        $supportedCountries = array_keys($self->getSupportedCountries());
 
-        return (in_array($iso3166alpha2code, $support)) ? true : false;
+        return (in_array($iso3166alpha2code, $supportedCountries)) ? true : false;
     }
 }
