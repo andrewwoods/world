@@ -79,4 +79,16 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue(isset($countries['CA']));
     }
 
+    public function testHasPostalAndPhoneSupport()
+    {
+        $unitedStatesSupported = CountryFactory::hasPostalAndPhoneSupport('US');
+        self::assertTrue($unitedStatesSupported);
+
+        $canadaSupported = CountryFactory::hasPostalAndPhoneSupport('CA');
+        self::assertTrue($canadaSupported);
+
+        $mexicoSupported = CountryFactory::hasPostalAndPhoneSupport('MX');
+        self::assertTrue($mexicoSupported);
+    }
+
 }
