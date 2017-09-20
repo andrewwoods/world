@@ -90,36 +90,6 @@ class CountryLoaderCommand extends Command
         echo $output;
     }
 
-
-    protected function generateReport($data)
-    {
-        $continent = [];
-        $currency = [];
-
-        foreach ($data as $record)
-        {
-            if ( ! isset($continent[ $record['continent'] ])){
-                $continent[ $record['continent'] ] = 0;
-            }
-            $continent[ $record['continent'] ]++;
-
-            if ( ! isset($currency[ $record['iso4217_alpha_code'] ])){
-                $currency[ $record['iso4217_alpha_code'] ] = 0;
-            }
-            $currency[ $record['iso4217_alpha_code'] ]++;
-        }
-
-        $this->reportItem('Continent', $continent);
-        $this->reportItem('Currency', $currency);
-    }
-
-    protected function reportItem($title, $data){
-        echo "\nTitle: {$title}\n";
-        foreach ($data AS $key => $value){
-            echo "\t{$key}: {$value}\n";
-        }
-    }
-
     /**
      * @param $data
      */
