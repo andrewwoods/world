@@ -23,6 +23,11 @@ class ContinentFactory
     const OCEANIA_CODE = 'OC';
     const SOUTH_AMERICA_CODE = 'SA';
 
+    /**
+     * @param $code
+     *
+     * @return Continent
+     */
     public static function get($code)
     {
         $code = strtoupper($code);

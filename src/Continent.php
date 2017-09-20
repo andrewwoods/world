@@ -12,6 +12,7 @@ namespace Awoods\World;
 
 /**
  * Class Continent
+ *
  * @package Awoods\World
  */
 class Continent
@@ -38,6 +39,8 @@ class Continent
     }
 
     /**
+     * Get the 2-letter abbreviation
+     *
      * @return string
      */
     public function getAbbr() : string
@@ -46,6 +49,8 @@ class Continent
     }
 
     /**
+     * The name of the Continent
+     *
      * @return string
      */
     public function getName() : string

@@ -61,6 +61,8 @@ class Country
     }
 
     /**
+     * Get the ISO 3166 2-letter country code
+     *
      * @return string
      */
     public function getCode() : string
@@ -69,6 +71,8 @@ class Country
     }
 
     /**
+     * Get the ISO 3166 3-letter country code
+     *
      * @return string
      */
     public function getIso3LetterCode() : string
@@ -77,6 +81,8 @@ class Country
     }
 
     /**
+     * Get the ISO 4127 3-letter currency code
+     *
      * @return int
      */
     public function getIsoCurrencyCode() : int

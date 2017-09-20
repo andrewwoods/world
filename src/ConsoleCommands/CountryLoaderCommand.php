@@ -19,10 +19,16 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use InvalidArgumentException;
 
-
+/**
+ * Class CountryLoaderCommand
+ *
+ * @package Awoods\World\ConsoleCommands
+ */
 class CountryLoaderCommand extends Command
 {
-
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this->setName("country:loader")
@@ -32,6 +38,9 @@ class CountryLoaderCommand extends Command
              ->addArgument('csv-filename', InputArgument::REQUIRED, 'the name of your PHP class');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $options = [];
@@ -56,6 +65,13 @@ class CountryLoaderCommand extends Command
         }
     }
 
+    /**
+     * Display the factory code to STDOUT
+     *
+     * this code should be copy/pasted into the CountryFactory
+     * @param $data
+     * @return void
+     */
     protected function generateFactoryCode($data)
     {
         $output = '';
@@ -104,6 +120,9 @@ class CountryLoaderCommand extends Command
         }
     }
 
+    /**
+     * @param $data
+     */
     protected function generateClassFiles($data)
     {
         foreach ($data as $row){
@@ -124,7 +143,14 @@ class CountryLoaderCommand extends Command
         }
     }
 
-
+    /**
+     * parse the country data file and load it into an array
+     *
+     * @param $filename
+     * @param $options
+     *
+     * @return array
+     */
     protected function parseFile($filename, $options)
     {
         $data = [];
@@ -195,6 +221,12 @@ class CountryLoaderCommand extends Command
         return $data;
     }
 
+    /**
+     * @param $className
+     * @param bool $data
+     *
+     * @return string
+     */
     protected function getClassTemplate($className, $data = false)
     {
 
@@ -239,8 +271,15 @@ CLASS_TEMPLATE;
         return $classTemplate;
     }
 
-    protected function getExtendedClassTemplate($className, $data){
-    $nameSpace = "Awoods\\World\\" . $data['continent'];
+    /**
+     * @param $className
+     * @param $data
+     *
+     * @return string
+     */
+    protected function getExtendedClassTemplate($className, $data)
+    {
+        $nameSpace = "Awoods\\World\\" . $data['continent'];
         $classTemplate = <<<CLASS_TEMPLATE
 <?php
 /**
@@ -280,6 +319,12 @@ CLASS_TEMPLATE;
         return $classTemplate;
     }
 
+    /**
+     * @param $className
+     * @param bool $data
+     *
+     * @return string
+     */
     protected function getFactoryTemplate($className, $data = false)
     {
         if ($data === false) {
@@ -305,6 +350,12 @@ FACTORY;
         return $factoryTemplate;
     }
 
+    /**
+     * @param $className
+     * @param bool $data
+     *
+     * @return string
+     */
     protected function getExtendedClassFactoryTemplate($className, $data = false)
     {
         if ($data === false) {

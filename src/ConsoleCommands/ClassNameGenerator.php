@@ -10,9 +10,20 @@
 
 namespace Awoods\World\ConsoleCommands;
 
-
+/**
+ * Class ClassNameGenerator
+ *
+ * @package Awoods\World\ConsoleCommands
+ */
 class ClassNameGenerator
 {
+    /**
+     * Create a class name based on the country name
+     *
+     * @param string $name
+     *
+     * @return string
+     */
     public function generate($name)
     {
         $name = $this->removeSpecialCharacters($name);
@@ -26,7 +37,16 @@ class ClassNameGenerator
         return $className;
     }
 
-    private function removeSpecialCharacters($content)
+    /**
+     * Remove foreign characters.
+     *
+     * Sometimes foreign characters can cause problems in class and file names; so replace them with equivalents.
+     *
+     * @param string $content
+     *
+     * @return string
+     */
+    private function replaceForeignCharacters($content)
     {
         $foreign = [
             'ç',
@@ -50,19 +70,39 @@ class ClassNameGenerator
         return str_replace($foreign, $english, $content);
     }
 
+    /**
+     * Condense multiple spaces into a single space
+     *
+     * @param string $content
+     *
+     * @return string
+     */
     private function removeExtraSpaces($content)
     {
         return preg_replace('/\s+/', ' ', $content);
     }
 
-    private function removeAmpersands($content)
+    /**
+     * Replace the ampersands with the word 'And'
+     *
+     * @param string $content
+     *
+     * @return string mixed
+     */
+    private function replaceAmpersands($content)
     {
         return preg_replace('/\&+/', 'And', $content);
     }
 
+    /**
+     * Remove periods from the name
+     *
+     * @param string $content
+     *
+     * @return string
+     */
     private function removePeriods($content)
     {
         return preg_replace('/\.+/', '', $content);
     }
-
 }

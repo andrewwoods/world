@@ -538,7 +538,7 @@ class CountryFactory
     }
 
     /**
-     * Return list of the currently supported countries
+     * Return list of countries with extended support. They have their own classes.
      *
      * @return array
      */
@@ -551,6 +551,15 @@ class CountryFactory
         ];
     }
 
+    /**
+     * Determine if a country has Postal Code and Phone Number validation support
+     *
+     * The countries that have support, have their own class that extends the base country class.
+     *
+     * @param $iso3166alpha2code
+     *
+     * @return bool
+     */
     public static function hasPostalAndPhoneSupport($iso3166alpha2code)
     {
         $support = [
