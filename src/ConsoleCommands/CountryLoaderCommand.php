@@ -33,8 +33,8 @@ class CountryLoaderCommand extends Command
     {
         $this->setName("country:loader")
              ->setDescription("Create a PHP class for the Country.")
-             ->addOption('continent', 'c', InputOption::VALUE_REQUIRED,'Filter by Continent')
-             ->addOption('factory', 'f', InputOption::VALUE_NONE,'Display factory code')
+             ->addOption('continent', 'c', InputOption::VALUE_REQUIRED, 'Filter by Continent')
+             ->addOption('factory', 'f', InputOption::VALUE_NONE, 'Display factory code')
              ->addArgument('csv-filename', InputArgument::REQUIRED, 'the name of your PHP class');
     }
 
@@ -60,7 +60,7 @@ class CountryLoaderCommand extends Command
 
         $this->generateClassFiles($data);
 
-        if (isset($options['factory'])){
+        if (isset($options['factory'])) {
             $this->generateFactoryCode($data);
         }
     }
@@ -69,18 +69,20 @@ class CountryLoaderCommand extends Command
      * Display the factory code to STDOUT
      *
      * this code should be copy/pasted into the CountryFactory
+     *
      * @param $data
+     *
      * @return void
      */
     protected function generateFactoryCode($data)
     {
         $output = '';
-        foreach ($data as $row){
+        foreach ($data as $row) {
             $nameGenerator = new ClassNameGenerator();
             $className = $nameGenerator->generate($row['name']);
 
             $classTemplate = $this->getFactoryTemplate($className, $row);
-            if (CountryFactory::hasPostalAndPhoneSupport($row['iso3166_1_alpha_2'])){
+            if (CountryFactory::hasPostalAndPhoneSupport($row['iso3166_1_alpha_2'])) {
                 $classTemplate = $this->getExtendedClassFactoryTemplate($className, $row);
             }
 
@@ -95,7 +97,7 @@ class CountryLoaderCommand extends Command
      */
     protected function generateClassFiles($data)
     {
-        foreach ($data as $row){
+        foreach ($data as $row) {
             if (CountryFactory::hasPostalAndPhoneSupport($row['iso3166_1_alpha_2'])) {
                 $nameGenerator = new ClassNameGenerator();
                 $className = $nameGenerator->generate($row['name']);
@@ -154,31 +156,30 @@ class CountryLoaderCommand extends Command
             'edgar'
         ];
 
-        $fh = fopen($filename,'r');
-        if ($fh !== false)
-        {
+        $fh = fopen($filename, 'r');
+        if ($fh !== false) {
             $counter = 0;
             while (($row = fgetcsv($fh)) !== false) {
                 $counter++;
-                if ($counter === 1){
+                if ($counter === 1) {
                     continue;
                 }
 
-                if ($row[0] === 'Antarctica'){
+                if ($row[0] === 'Antarctica') {
                     $row[1] = 'Antarctica';
                 }
 
-                if ($row[0] === 'US'){
+                if ($row[0] === 'US') {
                     $row[0] = 'United States';
                 }
 
-                if ($row[0] === 'UK'){
+                if ($row[0] === 'UK') {
                     $row[0] = 'United Kingdom';
                 }
 
                 $record = array_combine($fields, $row);
 
-                if ($options['continent'] && $record['continent'] !== $options['continent']){
+                if ($options['continent'] && $record['continent'] !== $options['continent']) {
                     continue;
                 }
 

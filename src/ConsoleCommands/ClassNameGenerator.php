@@ -26,8 +26,8 @@ class ClassNameGenerator
      */
     public function generate($name)
     {
-        $name = $this->removeSpecialCharacters($name);
-        $name = $this->removeAmpersands($name);
+        $name = $this->replaceForeignCharacters($name);
+        $name = $this->replaceAmpersands($name);
         $name = $this->removeExtraSpaces($name);
         $name = ucwords($name, " \t\r\n\f\v\.");
         $name = $this->removePeriods($name);
@@ -57,6 +57,7 @@ class ClassNameGenerator
             'é',
             'Å',
         ];
+
         $english = [
             'c',
             'o',

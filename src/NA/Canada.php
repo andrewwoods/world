@@ -87,7 +87,6 @@ class Canada extends Country implements SubdivisionInterface, PostalCodeInterfac
         ];
     }
 
-
     /**
      * Check if a postal code complies with the Canadian postal format
      *
@@ -111,8 +110,6 @@ class Canada extends Country implements SubdivisionInterface, PostalCodeInterfac
 
         return false;
     }
-
-
 
     /**
      * Check if a postal code complies with the Canadian postal format
