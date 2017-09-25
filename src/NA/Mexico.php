@@ -12,12 +12,17 @@ namespace Awoods\World\NA;
 
 use Awoods\World\Country;
 use Awoods\World\ContinentFactory;
+use Awoods\World\PostalCodeInterface;
 use Awoods\World\SubdivisionInterface;
+use BadMethodCallException;
 
 /**
  * Class Mexico.
+ *
+ * @see https://gist.githubusercontent.com/matthewbednarski/4d15c7f50258b82e2d7e/raw/bbbe9c50acb24c6930e19e3b0a1951b00a1aebfb/postal-codes.json
+ * @see https://en.youbianku.com/Mexico
  */
-class Mexico extends Country implements SubdivisionInterface
+class Mexico extends Country implements SubdivisionInterface, PostalCodeInterface
 {
     private $data = [
         ['iso' => 'MX-AGU', 'name' => 'Aguascalientes', 'prefix' => ['20']],
@@ -54,6 +59,8 @@ class Mexico extends Country implements SubdivisionInterface
         ['iso' => 'MX-ZAC', 'name' => 'Zacatecas', 'prefix' => ['98', '99']],
     ];
 
+    private $postalState;
+
     /**
      * Constructor.
      */
@@ -83,5 +90,98 @@ class Mexico extends Country implements SubdivisionInterface
         }
 
         return $data;
+    }
+
+
+    /**
+     * Verify if the value provided looks like a valid Postal code
+     *
+     * The postal code system used in Mexico is loosely based on the United States ZIP code system.
+     *
+     * @param string $postalCode
+     *
+     * @return bool
+     */
+    public function isPostalCodeValid($postalCode)
+    {
+        $matches = [];
+        $stateToCodes = [];
+
+        preg_match('/^\d{5}$/', $postalCode, $matches);
+
+        if (isset($matches[0]) && $postalCode === $matches[0]) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Verify if the looks like a strictly valid Postal code
+     *
+     * Similar to isPostalCodeValid, but also checks if the first two digits of the postal code correspond to the state.
+     *
+     * Example 02860
+     *
+     * 02=state or province
+     * 8=zone or commune
+     * 60=locality, district or quarter
+     *
+     * @see self::setPostalCodeState()
+     *
+     * @throws BadMethodCallException
+     *
+     * @param string $postalCode
+     *
+     * @return bool
+     */
+    public function isPostalCodeStrictValid($postalCode)
+    {
+        if (empty($this->postalState)){
+            throw new BadMethodCallException('Call the setPostalState method before calling this');
+        }
+
+        $matches = [];
+        preg_match('/^(\d\d)\d\d\d$/', $postalCode, $matches);
+
+        if (isset($matches[0]) && $postalCode === $matches[0]) {
+            $state = $matches[1];
+            $record = $this->findRecordByState($this->postalState);
+
+            if (isset($record['prefix']) && in_array($state, $record['prefix'])){
+                return true;
+            }
+
+            return false;
+        }
+
+        return false;
+    }
+
+    /**
+     * Look through the data array and retrieve the record for the matching state
+     *
+     * @param $state
+     * @return array
+     */
+    protected function findRecordByState($state)
+    {
+        foreach ($this->data as $record)
+        {
+            if ($state === $record['iso'] || $state === $record['name']){
+                return $record;
+            }
+        }
+
+        return [];
+    }
+
+    /**
+     * This must be called before isPostalCodeStrictValid, since the 1st 2 digits of the postal code correspond to the state
+     *
+     * @param $state
+     */
+    public function setPostalCodeState($state){
+        $this->postalState = $state;
     }
 }
