@@ -81,4 +81,69 @@ class MexicoTest extends PHPUnit_Framework_TestCase
         $mexico->isPostalCodeStrictValid($invalidPostalCode);
     }
 
+    public function testIsPhoneNumberValid()
+    {
+        $invalidHasLetters = '123456789A';
+        $invalidTooShort8digits = '12345678';
+        $invalidTooShort9digits = '123456789';
+        $invalidTooShort11digits = '12345678901';
+
+        $usConsulateMexicoCity = '5550802000'; // Phone: ( 01-55 ) 5080-2000
+
+        $mexico = new Mexico();
+
+        $result = $mexico->isPhoneNumberValid($invalidHasLetters);
+        self::assertFalse($result);
+
+        $result = $mexico->isPhoneNumberValid($invalidTooShort8digits);
+        self::assertFalse($result);
+
+        $result = $mexico->isPhoneNumberValid($invalidTooShort9digits);
+        self::assertFalse($result);
+
+        $result = $mexico->isPhoneNumberValid($invalidTooShort11digits);
+        self::assertFalse($result);
+
+        $result = $mexico->isPhoneNumberValid($usConsulateMexicoCity);
+        self::assertTrue($result);
+    }
+
+    public function testIsPhoneNumberStrictValid()
+    {
+        $invalidHasLetters = '123456789A';
+        $invalidTooShort8digits = '12345678';
+        $invalidTooShort9digits = '123456789';
+        $invalidTooShort11digits = '12345678901';
+        $invalidCantStartWith01 = '0123456789';
+        $invalidCantStartWith044 = '0441234567';
+        $invalidCantStartWith045 = '0451234567';
+
+        $usConsulateMexicoCity = '5550802000'; // Phone: ( 01-55 ) 5080-2000
+
+        $mexico = new Mexico();
+
+        $result = $mexico->isPhoneNumberStrictValid($invalidHasLetters);
+        self::assertFalse($result);
+
+        $result = $mexico->isPhoneNumberStrictValid($invalidTooShort8digits);
+        self::assertFalse($result, '8 digits is too short');
+
+        $result = $mexico->isPhoneNumberStrictValid($invalidTooShort9digits);
+        self::assertFalse($result, '9 digits is too short');
+
+        $result = $mexico->isPhoneNumberStrictValid($invalidTooShort11digits);
+        self::assertFalse($result, '11 digits is too long');
+
+        $result = $mexico->isPhoneNumberStrictValid($invalidCantStartWith01);
+        self::assertFalse($result, 'Cannot start with 01');
+
+        $result = $mexico->isPhoneNumberStrictValid($invalidCantStartWith044);
+        self::assertFalse($result, 'Cannot start with 044');
+
+        $result = $mexico->isPhoneNumberStrictValid($invalidCantStartWith045);
+        self::assertFalse($result, 'Cannot start with 045');
+
+        $result = $mexico->isPhoneNumberStrictValid($usConsulateMexicoCity);
+        self::assertTrue($result);
+    }
 }

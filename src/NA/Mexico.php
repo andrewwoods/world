@@ -13,6 +13,7 @@ namespace Awoods\World\NA;
 use Awoods\World\Country;
 use Awoods\World\ContinentFactory;
 use Awoods\World\PostalCodeInterface;
+use Awoods\World\PhoneNumberInterface;
 use Awoods\World\SubdivisionInterface;
 use BadMethodCallException;
 
@@ -22,7 +23,7 @@ use BadMethodCallException;
  * @see https://gist.githubusercontent.com/matthewbednarski/4d15c7f50258b82e2d7e/raw/bbbe9c50acb24c6930e19e3b0a1951b00a1aebfb/postal-codes.json
  * @see https://en.youbianku.com/Mexico
  */
-class Mexico extends Country implements SubdivisionInterface, PostalCodeInterface
+class Mexico extends Country implements SubdivisionInterface, PostalCodeInterface, PhoneNumberInterface
 {
     private $data = [
         ['iso' => 'MX-AGU', 'name' => 'Aguascalientes', 'prefix' => ['20']],
@@ -183,5 +184,47 @@ class Mexico extends Country implements SubdivisionInterface, PostalCodeInterfac
      */
     public function setPostalCodeState($state){
         $this->postalState = $state;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isPhoneNumberValid($phone) : bool
+    {
+        $matches = [];
+        preg_match('/^\d{10}$/', $phone, $matches);
+
+        if (isset($matches[0]) && $phone === $matches[0]) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isPhoneNumberStrictValid($phone) : bool
+    {
+        $matches = [];
+        preg_match('/^\d{10}$/', $phone, $matches);
+
+        if (isset($matches[0]) && $phone === $matches[0]) {
+
+            $first2digits = substr($phone, 0, 2);
+            $first3digits = substr($phone, 0, 3);
+
+            if (
+                $first2digits === '01' ||
+                $first3digits === '044' ||
+                $first3digits === '045'
+            ){
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }
