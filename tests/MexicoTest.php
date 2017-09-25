@@ -30,12 +30,12 @@ class MexicoTest extends PHPUnit_Framework_TestCase
 
         $states = $mexico->getSubdivisionList();
 
-        $this->assertArrayHasKey('CA', $states);
-        $this->assertEquals('Coahuila', $states['CA']);
+        $this->assertArrayHasKey('MX-COA', $states);
+        $this->assertEquals('Coahuila', $states['MX-COA']);
 
-        $this->assertArrayHasKey('HI', $states);
-        $this->assertEquals('Hidalgo', $states['HI']);
-
-
+        $this->assertArrayHasKey('MX-HID', $states);
+        $this->assertEquals('Hidalgo', $states['MX-HID']);
    }
+
+
 }
