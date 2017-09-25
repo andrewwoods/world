@@ -32,7 +32,7 @@ class CountryLoaderCommand extends Command
     protected function configure()
     {
         $this->setName("country:loader")
-             ->setDescription("Create a PHP class for the Country.")
+             ->setDescription("Create a PHP class for each Country in the data file.")
              ->addOption('continent', 'c', InputOption::VALUE_REQUIRED, 'Filter by Continent')
              ->addOption('factory', 'f', InputOption::VALUE_NONE, 'Display factory code')
              ->addArgument('csv-filename', InputArgument::REQUIRED, 'the name of your PHP class');
