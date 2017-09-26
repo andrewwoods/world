@@ -63,6 +63,25 @@ class CountryLoaderCommand extends Command
         if (isset($options['factory'])) {
             $this->generateFactoryCode($data);
         }
+
+        echo PHP_EOL;
+        echo PHP_EOL;
+        echo $this->getAllCountriesCode($data);
+    }
+
+    /**
+     * @param $data
+     *
+     * @return string
+     */
+    public function getAllCountriesCode($data)
+    {
+        $output = '';
+        foreach ($data as $row) {
+           $output .= $this->getAllCountriesTemplate($row['iso3166_1_alpha_2'], $row['name']) . PHP_EOL;
+        }
+
+        return $output;
     }
 
     /**
@@ -341,6 +360,23 @@ FACTORY;
                 break;
 
 FACTORY;
+
+        return $factoryTemplate;
+    }
+
+
+    /**
+     * @param $countryCode
+     * @param $countryName
+     *
+     * @return string
+     */
+    protected function getAllCountriesTemplate($countryCode, $countryName)
+    {
+
+        $factoryTemplate = <<<ALL_COUNTRIES
+            '{$countryCode}' => '{$countryName}',
+ALL_COUNTRIES;
 
         return $factoryTemplate;
     }

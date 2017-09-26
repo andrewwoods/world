@@ -538,6 +538,57 @@ class CountryFactory
     }
 
     /**
+     *
+     */
+    public function getAllCountries()
+    {
+        return [
+            // North America
+            'AI' => 'Anguilla',
+            'AG' => 'Antigua & Barbuda',
+            'AW' => 'Aruba',
+            'BS' => 'Bahamas',
+            'BB' => 'Barbados',
+            'BZ' => 'Belize',
+            'BM' => 'Bermuda',
+            'VG' => 'British Virgin Islands',
+            'CA' => 'Canada',
+            'BQ' => 'Caribbean Netherlands',
+            'KY' => 'Cayman Islands',
+            'CR' => 'Costa Rica',
+            'CU' => 'Cuba',
+            'CW' => 'Curaçao',
+            'DM' => 'Dominica',
+            'DO' => 'Dominican Republic',
+            'SV' => 'El Salvador',
+            'GL' => 'Greenland',
+            'GD' => 'Grenada',
+            'GP' => 'Guadeloupe',
+            'GT' => 'Guatemala',
+            'HT' => 'Haiti',
+            'HN' => 'Honduras',
+            'JM' => 'Jamaica',
+            'MQ' => 'Martinique',
+            'MX' => 'Mexico',
+            'MS' => 'Montserrat',
+            'NI' => 'Nicaragua',
+            'PA' => 'Panama',
+            'PR' => 'Puerto Rico',
+            'SX' => 'Sint Maarten',
+            'BL' => 'St. Barthélemy',
+            'KN' => 'St. Kitts & Nevis',
+            'LC' => 'St. Lucia',
+            'MF' => 'St. Martin',
+            'PM' => 'St. Pierre & Miquelon',
+            'VC' => 'St. Vincent & Grenadines',
+            'TT' => 'Trinidad & Tobago',
+            'TC' => 'Turks & Caicos Islands',
+            'VI' => 'U.S. Virgin Islands',
+            'US' => 'United States',
+        ];
+    }
+
+    /**
      * Return list of countries with extended support. They have their own classes.
      *
      * @return array

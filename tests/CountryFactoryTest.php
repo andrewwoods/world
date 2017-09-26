@@ -91,4 +91,15 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
         self::assertTrue($mexicoSupported);
     }
 
+    public function testGetAllCountries()
+    {
+        $factory = new CountryFactory();
+        $countries = $factory->getAllCountries();
+
+        self::assertEquals(41, count($countries));
+        self::assertArrayHasKey('US', $countries);
+        self::assertArrayHasKey('CA', $countries);
+        self::assertArrayHasKey('MX', $countries);
+
+    }
 }
