@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-require_once '../vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 use Awoods\World\ConsoleCommands\CountryLoaderCommand;
 use Symfony\Component\Console\Application;
