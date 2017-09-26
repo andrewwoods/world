@@ -8,6 +8,25 @@ Provinces, and to determine if a postal code or phone number is valid.
 Some countries don't use postal codes at all, phone numbers have different
 criteria across countries. This library aims to make things a little easier.
 
+For every country object, you can access the following information:
+
+* Common Name
+* Official Name
+* ISO 3166-1 alpha 2 code (e.g. US for United States)
+* ISO 3166-2 alpha 3 code (e.g. USA for United States)
+* ISO 4127 Currency code (e.g. USD for United States Dollars)
+* The Continent
+
+The available **interfaces** are:
+
+* PhoneNumberInterface - provide phone number validation method signatures
+* PostalCodeInterface  - provide postal code validation method signatures
+* SubdivisionInterface - provide a subdivision list, e.g. provinces in Canada
+
+The available **traits** are:
+
+* NorthAmericanPhoneNumber
+* ZipCode
 
 ## Version
 
@@ -19,16 +38,24 @@ This is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Currently Supported Countries
 
-* **North America**
+### North America
+
+The countries have additional phone number and postal code validation methods
+
+  - United States
+  - Canada
+  - Mexico
+
+The countries have basic Country support
+
   - Anguilla
-  - Antigua & Barbuda
+  - Antigua and Barbuda
   - Aruba
   - Bahamas
   - Barbados
   - Belize
   - Bermuda
   - British Virgin Islands
-  - Canada
   - Caribbean Netherlands
   - Cayman Islands
   - Costa Rica
@@ -45,22 +72,20 @@ This is licensed under the [MIT License](https://opensource.org/licenses/MIT).
   - Honduras
   - Jamaica
   - Martinique
-  - Mexico
   - Montserrat
   - Nicaragua
   - Panama
   - Puerto Rico
   - Sint Maarten
   - St. Barthélemy
-  - St. Kitts & Nevis
+  - St. Kitts and Nevis
   - St. Lucia
   - St. Martin
-  - St. Pierre & Miquelon
-  - St. Vincent & Grenadines
-  - Trinidad & Tobago
-  - Turks & Caicos Islands
+  - St. Pierre and Miquelon
+  - St. Vincent and Grenadines
+  - Trinidad and Tobago
+  - Turks and Caicos Islands
   - U.S. Virgin Islands
-  - United States
 
 ## Upcoming Countries
 
@@ -92,11 +117,11 @@ This is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 ## Example Code
 
 ```php
-require "../vendor/autoload.php";
+require "vendor/autoload.php";
 
 $countryFactory = new \Awoods\World\CountryFactory();
 
-$countries = $countryFactory->getList();
+$countries = $countryFactory->getAllCountries();
 
 foreach ($countries AS $code => $name) {
     echo "\n";
