@@ -143,10 +143,11 @@ echo "\n";
 ## Ideas for sections/pages
 
 * Traits
+
   - NorthAmericanPhoneNumber
-* Interfaces
-  - Country
+
 * Features
+
 * Language Translations
 
   These 5 languages plus English should cover most developers in the world
