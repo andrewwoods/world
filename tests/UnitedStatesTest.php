@@ -114,28 +114,27 @@ class UnitedStatesTest extends PHPUnit_Framework_TestCase {
 
 	public function testIsPhoneNumberValidStrictFormat() {
 		$us = new UnitedStates();
-		$strict = true;
 
 		$phoneJimmyJohnsNumbersOnly = '2066239500';
-		$this->assertTrue($us->isPhoneNumberValid($phoneJimmyJohnsNumbersOnly, $strict));
+		$this->assertTrue($us->isPhoneNumberStrictValid($phoneJimmyJohnsNumbersOnly));
 
 		$phoneBadPrefix411 = '4115551234';
-		$this->assertFalse($us->isPhoneNumberValid($phoneBadPrefix411, $strict));
+		$this->assertFalse($us->isPhoneNumberStrictValid($phoneBadPrefix411));
 
 		$phoneBadPrefix611 = '6115551234';
-		$this->assertFalse($us->isPhoneNumberValid($phoneBadPrefix611, $strict));
+		$this->assertFalse($us->isPhoneNumberStrictValid($phoneBadPrefix611));
 
 		$phoneBadPrefixReserved = '6915551234';
-		$this->assertFalse($us->isPhoneNumberValid($phoneBadPrefixReserved, $strict));
+		$this->assertFalse($us->isPhoneNumberStrictValid($phoneBadPrefixReserved));
 
 		$phoneGoodWithDashes = '681-555-1234';
-		$this->assertFalse($us->isPhoneNumberValid($phoneGoodWithDashes, $strict));
+		$this->assertFalse($us->isPhoneNumberStrictValid($phoneGoodWithDashes));
 
 		$phoneGoodWithDashesWithCountry = '1-681-555-1234';
-		$this->assertFalse($us->isPhoneNumberValid($phoneGoodWithDashesWithCountry, $strict));
+		$this->assertFalse($us->isPhoneNumberStrictValid($phoneGoodWithDashesWithCountry));
 
 		$phoneGoodWithDashesWithCountry = '+1-681-555-1234';
-		$this->assertFalse($us->isPhoneNumberValid($phoneGoodWithDashesWithCountry, $strict));
+		$this->assertFalse($us->isPhoneNumberStrictValid($phoneGoodWithDashesWithCountry));
 	}
 }
 
