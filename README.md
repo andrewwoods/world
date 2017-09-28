@@ -30,7 +30,7 @@ The available **traits** are:
 
 ## Version
 
-The current version is 0.1.0. This project uses [semantic versioning](http://semver.org).
+The current version is 0.1.1. This project uses [semantic versioning](http://semver.org).
 
 ## License
 
