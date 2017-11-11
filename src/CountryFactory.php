@@ -27,9 +27,8 @@ class CountryFactory
      * @param string $countryCode an unique identifier (ISO 3166-2 and ISO 3166-3) to represent a country
      *
      * @return Country
-     *
      */
-    public function create($countryCode)
+    public static function get($countryCode)
     {
         switch ($countryCode) {
             /*

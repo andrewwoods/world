@@ -18,8 +18,7 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 	public function testCreateUnitedStatesWithISO3166Alpha2Code(){
 		$expected = 'UnitedStates';
 
-		$factory = new CountryFactory();
-		$us = $factory->create('US');
+		$us = CountryFactory::get('US');
 
 		$this->assertContains($expected, get_class($us));
 	}
@@ -28,8 +27,7 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 	public function testCreateUnitedStatesWithISO3166Alpha3Code(){
 		$expected = 'UnitedStates';
 
-		$factory = new CountryFactory();
-		$us = $factory->create('USA');
+		$us = CountryFactory::get('USA');
 
 		$this->assertContains($expected, get_class($us));
 	}
@@ -38,8 +36,7 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
     public function testCreateCanadaWithISO3166Alpha2Code(){
         $expected = 'Canada';
 
-        $factory = new CountryFactory();
-        $ca = $factory->create('CA');
+        $ca = CountryFactory::get('CA');
 
         $this->assertContains($expected, get_class($ca));
     }
@@ -49,8 +46,7 @@ class CountryFactoryTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testCreateWithIncorrectCode(){
 
-		$factory = new CountryFactory();
-		$badCountry = $factory->create('invalid');
+		$badCountry = CountryFactory::get('invalid');
 
 	}
 

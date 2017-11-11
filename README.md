@@ -36,6 +36,46 @@ The current version is 0.1.1. This project uses [semantic versioning](http://sem
 
 This is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
+
+## Example Code
+
+### Retrieve Single Country
+
+```php
+require 'vendor/autoload.php';
+
+$usa = Awoods\World\CountryFactory::get('US');
+echo $usa->getOfficialName(); // Unites States of America
+
+$canada = Awoods\World\CountryFactory::get('CAN');
+echo $canada->getCommonName(); // Canada
+```
+
+### Loop Over All Countries
+
+```php
+require "vendor/autoload.php";
+
+$countryFactory = new \Awoods\World\CountryFactory();
+$countries = $countryFactory->getAllCountries();
+
+foreach ($countries AS $code => $name) {
+    echo "\n";
+    echo "{$code} is the code for {$name}\n";
+
+    $country = $countryFactory->create($code);
+
+    echo "The official name for {$name} is '{$country->getFullName()}'\n";
+    echo "Here is a list of it's localities:\n";
+
+    foreach ($country->getLocalityList() AS $localityCode => $localityName) {
+        echo "* {$localityName} ({$localityCode})\n";
+    }
+}
+echo "\n";
+```
+
+
 ## Currently Supported Countries
 
 ### North America
@@ -113,32 +153,6 @@ The countries have basic Country support
 
   - todo
 
-
-## Example Code
-
-```php
-require "vendor/autoload.php";
-
-$countryFactory = new \Awoods\World\CountryFactory();
-
-$countries = $countryFactory->getAllCountries();
-
-foreach ($countries AS $code => $name) {
-    echo "\n";
-    echo "{$code} is the code for {$name}\n";
-
-    $country = $countryFactory->create($code);
-
-    echo "The official name for {$name} is '{$country->getFullName()}'\n";
-    echo "Here is a list of it's localities:\n";
-
-    foreach ($country->getLocalityList() AS $localityCode => $localityName) {
-
-        echo "* {$localityName} ({$localityCode})\n";
-    }
-}
-echo "\n";
-```
 
 ## Ideas for sections/pages
 
