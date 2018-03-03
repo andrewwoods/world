@@ -121,7 +121,8 @@ class CountryLoaderCommand extends Command
                 $nameGenerator = new ClassNameGenerator();
                 $className = $nameGenerator->generate($row['name']);
 
-                $classTemplate = $this->getExtendedClassTemplate($className, $row);
+                $countryClassTemplate = new BaseCountryFactoryTemplate();
+                $classTemplate = $countryClassTemplate->render($row);
 
                 $file = new CountryFile();
                 $filename = $file->createCountryFilename($className, $row['continent']);
@@ -144,71 +145,8 @@ class CountryLoaderCommand extends Command
      */
     protected function parseFile($filename, $options)
     {
-        $data = [];
-        $fields = [
-            'name',
-            'official_name_en',
-            'official_name_fr',
-            'iso3166_1_alpha_2',
-            'iso3166_1_alpha_3',
-            'm49',
-            'itu',
-            'marc',
-            'wmo',
-            'ds',
-            'dial',
-            'fifa',
-            'fips',
-            'gaul',
-            'ioc',
-            'iso4217_alpha_code',
-            'iso4217_country_name',
-            'iso4217_minor_unit',
-            'iso4217_name',
-            'iso4217_numeric_code',
-            'is_independent',
-            'capital',
-            'continent',
-            'tld',
-            'languages',
-            'geoname_id',
-            'edgar'
-        ];
-
-        $fh = fopen($filename, 'r');
-        if ($fh !== false) {
-            $counter = 0;
-            while (($row = fgetcsv($fh)) !== false) {
-                $counter++;
-                if ($counter === 1) {
-                    continue;
-                }
-
-                if ($row[0] === 'Antarctica') {
-                    $row[1] = 'Antarctica';
-                }
-
-                if ($row[0] === 'US') {
-                    $row[0] = 'United States';
-                }
-
-                if ($row[0] === 'UK') {
-                    $row[0] = 'United Kingdom';
-                }
-
-                $record = array_combine($fields, $row);
-
-                if ($options['continent'] && $record['continent'] !== $options['continent']) {
-                    continue;
-                }
-
-                $data[] = $record;
-            }
-
-            fclose($fh);
-        }
-
-        return $data;
+        $parser = new CountryDataParser($filename);
+        return $parser->parse($options);
     }
 
     /**
@@ -269,44 +207,6 @@ CLASS_TEMPLATE;
      */
     protected function getExtendedClassTemplate($className, $data)
     {
-        $nameSpace = "Awoods\\World\\" . $data['continent'];
-        $classTemplate = <<<CLASS_TEMPLATE
-<?php
-/**
- * This is part of the World project.
- *
- * @license https://opensource.org/licenses/mit-license.php MIT
- */
-
-namespace {$nameSpace};
-
-use Awoods\World\Country;
-use Awoods\World\ContinentFactory;
-
-/**
- * Class {$className}.
- */
-class {$className} extends Country
-{
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct(
-            '{$data['iso3166_1_alpha_2']}',
-            '{$data['iso3166_1_alpha_3']}',
-            '{$data['iso4217_alpha_code']}',
-            '{$data['name']}',
-            '{$data['official_name_en']}',
-            ContinentFactory::get("{$data['continent']}")
-        );
-    }
-}
-
-CLASS_TEMPLATE;
-
-        return $classTemplate;
     }
 
     /**
@@ -317,27 +217,6 @@ CLASS_TEMPLATE;
      */
     protected function getFactoryTemplate($className, $data = false)
     {
-        if ($data === false) {
-            throw new InvalidArgumentException();
-        }
-
-        $factoryTemplate = <<<FACTORY
-
-            case '{$data['iso3166_1_alpha_2']}':
-            case '{$data['iso3166_1_alpha_3']}':
-                return new Country(
-                    '{$data['iso3166_1_alpha_2']}',
-                    '{$data['iso3166_1_alpha_3']}',
-                    '{$data['iso4217_alpha_code']}',
-                    '{$data['name']}',
-                    '{$data['official_name_en']}',
-                    ContinentFactory::get('{$data['continent']}')
-                );
-                break;
-
-FACTORY;
-
-        return $factoryTemplate;
     }
 
     /**
@@ -348,20 +227,9 @@ FACTORY;
      */
     protected function getExtendedClassFactoryTemplate($className, $data = false)
     {
-        if ($data === false) {
-            throw new InvalidArgumentException();
-        }
+        $factoryTemplate = new CountryFactoryTemplate();
 
-        $factoryTemplate = <<<FACTORY
-
-            case '{$data['iso3166_1_alpha_2']}':
-            case '{$data['iso3166_1_alpha_3']}':
-                return new {$className}();
-                break;
-
-FACTORY;
-
-        return $factoryTemplate;
+        return $factoryTemplate->render($className, $data);
     }
 
 

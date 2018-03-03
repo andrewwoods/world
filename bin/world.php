@@ -12,11 +12,13 @@
 require_once 'vendor/autoload.php';
 
 use Awoods\World\ConsoleCommands\CountryLoaderCommand;
+use Awoods\World\ConsoleCommands\CountryGeneratorCommand;
 use Symfony\Component\Console\Application;
 
-$application = new Application('World Application');
+$application = new Application('World Application', '0.1.0');
 
 // Register your commands
 $application->add(new CountryLoaderCommand());
+$application->add(new CountryGeneratorCommand());
 
 $application->run();
