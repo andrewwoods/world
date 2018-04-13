@@ -7,6 +7,7 @@
 
 namespace Awoods\World;
 
+use Awoods\World\NA\PuertoRico;
 use UnexpectedValueException;
 use Awoods\World\NA\UnitedStates;
 use Awoods\World\NA\Canada;
@@ -22,7 +23,6 @@ class CountryFactory
     /**
      * Retrieve a country object from an country code
      *
-     * @throws UnexpectedValueException
      *
      * @param string $countryCode an unique identifier (ISO 3166-2 and ISO 3166-3) to represent a country
      *
@@ -387,14 +387,7 @@ class CountryFactory
 
             case 'PR':
             case 'PRI':
-                return new Country(
-                    'PR',
-                    'PRI',
-                    'USD',
-                    'Puerto Rico',
-                    'Puerto Rico',
-                    ContinentFactory::get('NA')
-                );
+                return new PuertoRico();
                 break;
 
             case 'SX':
@@ -598,6 +591,7 @@ class CountryFactory
             'US' => new UnitedStates(),
             'CA' => new Canada(),
             'MX' => new Mexico(),
+            'PR' => new PuertoRico(),
         ];
     }
 

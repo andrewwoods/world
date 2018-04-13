@@ -1,18 +1,21 @@
 {
     "name": "awoods/world",
+    "version": "0.2.0",
+    "time": "2019-02-08",
     "description": "interact with data from places around the world - the states in the US, the provinces in Canada, validate phone numbers, validate zipcodes/postal codes",
     "license": "MIT",
     "type": "library",
-    "keywords": ["locations", "geography", "postal codes", "zipcodes", "phone numbers"],
+    "keywords": ["locations", "countries", "geography", "postal codes", "zipcodes", "phone numbers"],
     "authors": [
         {
             "name": "Andrew Woods",
-            "email": "andrew@andrewwoods.net"
+            "email": "andrew@andrewwoods.net",
+            "homepage": "https://andrewwoods.net"
         }
     ],
     "require": {
 		"php": ">=7.0.0",
-        "symfony/console": "^3.3"
+        "symfony/console": "~4.2"
 	},
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
