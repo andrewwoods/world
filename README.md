@@ -30,7 +30,7 @@ The available **traits** are:
 
 ## Version
 
-The current version is 0.1.1. This project uses [semantic versioning](http://semver.org).
+The current version is 0.2.0. This project uses [semantic versioning](http://semver.org).
 
 ## License
 
@@ -115,7 +115,7 @@ The countries have basic Country support
   - Montserrat
   - Nicaragua
   - Panama
-  - Puerto Rico
+  - **Puerto Rico**
   - Sint Maarten
   - St. Barthélemy
   - St. Kitts and Nevis
@@ -125,7 +125,7 @@ The countries have basic Country support
   - St. Vincent and Grenadines
   - Trinidad and Tobago
   - Turks and Caicos Islands
-  - U.S. Virgin Islands
+  - **U.S. Virgin Islands**
 
 ## Upcoming Countries
 
