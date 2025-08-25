@@ -23,7 +23,7 @@ class CountryFactoryTest extends TestCase {
 
         $us = CountryFactory::get('US');
 
-        $this->assertContains($expected, get_class($us));
+        $this->assertTrue(str_contains(get_class($us), $expected));
     }
 
 
@@ -32,7 +32,7 @@ class CountryFactoryTest extends TestCase {
 
         $us = CountryFactory::get('USA');
 
-        $this->assertContains($expected, get_class($us));
+        $this->assertTrue(str_contains(get_class($us), $expected));
     }
 
 
@@ -41,13 +41,15 @@ class CountryFactoryTest extends TestCase {
 
         $ca = CountryFactory::get('CA');
 
-        $this->assertContains($expected, get_class($ca));
+        $this->assertEquals($expected, $ca->getCommonName());
     }
 
     /**
      * @expectedException UnexpectedValueException
      */
     public function testCreateWithIncorrectCode(){
+
+        $this->expectException(UnexpectedValueException::class);
 
         $badCountry = CountryFactory::get('invalid');
 

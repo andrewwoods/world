@@ -80,7 +80,7 @@ class MexicoTest extends TestCase
         $invalidPostalCode = 'ABCD';
 
         $mexico = new Mexico();
-        self::setExpectedException('BadMethodCallException');
+        $this->expectException(BadMethodCallException::class);
         $mexico->isPostalCodeStrictValid($invalidPostalCode);
     }
 
