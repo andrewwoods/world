@@ -7,11 +7,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+declare(strict_types=1);
 
+use PHPUnit\Framework\TestCase;
 use Awoods\World\NA\UnitedStates;
 use Awoods\World\Country;
 
-class UnitedStatesTest extends PHPUnit_Framework_TestCase {
+class UnitedStatesTest extends TestCase {
 
 	public function testGetName(){
 		$expected = 'United States';

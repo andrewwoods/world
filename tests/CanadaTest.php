@@ -8,6 +8,9 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
+use PHPUnit\Framework\TestCase;
 use \Awoods\World\NA\Canada;
 
 /**
@@ -15,7 +18,7 @@ use \Awoods\World\NA\Canada;
  *
  * @package Awoods/World
  */
-class CanadaTest extends PHPUnit_Framework_TestCase {
+class CanadaTest extends TestCase {
 
 	public function testIsPostalValidSimpleFormat(){
 		$canada = new Canada();

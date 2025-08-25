@@ -8,12 +8,15 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
 
-class GeoLocatorTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class GeoLocatorTest extends TestCase
 {
     protected $data = [];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp(); // TODO: Implement this method
         // Origin of the Earth grid

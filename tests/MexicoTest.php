@@ -8,9 +8,12 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
+use PHPUnit\Framework\TestCase;
 use Awoods\World\NA\Mexico;
 
-class MexicoTest extends PHPUnit_Framework_TestCase
+class MexicoTest extends TestCase
 {
    public function testGetName(){
 

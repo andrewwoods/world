@@ -8,8 +8,11 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
 
-class GeoPointTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class GeoPointTest extends TestCase
 {
     public function testGetPosition()
     {

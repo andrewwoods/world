@@ -8,12 +8,15 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
+use PHPUnit\Framework\TestCase;
 use Awoods\World\CountryFactory;
 
 /**
  * Class CountryFactoryTest
  */
-class CountryFactoryTest extends PHPUnit_Framework_TestCase {
+class CountryFactoryTest extends TestCase {
 
 	public function testCreateUnitedStatesWithISO3166Alpha2Code(){
 		$expected = 'UnitedStates';
