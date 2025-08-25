@@ -18,22 +18,22 @@ use Awoods\World\CountryFactory;
  */
 class CountryFactoryTest extends TestCase {
 
-	public function testCreateUnitedStatesWithISO3166Alpha2Code(){
-		$expected = 'UnitedStates';
+    public function testCreateUnitedStatesWithISO3166Alpha2Code(){
+        $expected = 'UnitedStates';
 
-		$us = CountryFactory::get('US');
+        $us = CountryFactory::get('US');
 
-		$this->assertContains($expected, get_class($us));
-	}
+        $this->assertContains($expected, get_class($us));
+    }
 
 
-	public function testCreateUnitedStatesWithISO3166Alpha3Code(){
-		$expected = 'UnitedStates';
+    public function testCreateUnitedStatesWithISO3166Alpha3Code(){
+        $expected = 'UnitedStates';
 
-		$us = CountryFactory::get('USA');
+        $us = CountryFactory::get('USA');
 
-		$this->assertContains($expected, get_class($us));
-	}
+        $this->assertContains($expected, get_class($us));
+    }
 
 
     public function testCreateCanadaWithISO3166Alpha2Code(){
@@ -44,17 +44,17 @@ class CountryFactoryTest extends TestCase {
         $this->assertContains($expected, get_class($ca));
     }
 
-	/**
-	 * @expectedException UnexpectedValueException
-	 */
-	public function testCreateWithIncorrectCode(){
+    /**
+     * @expectedException UnexpectedValueException
+     */
+    public function testCreateWithIncorrectCode(){
 
-		$badCountry = CountryFactory::get('invalid');
+        $badCountry = CountryFactory::get('invalid');
 
-	}
+    }
 
-	public function testGetListCount(){
-	    $expected = 3;
+    public function testGetListCount(){
+        $expected = 3;
 
         $factory = new CountryFactory();
         $countries = $factory->getSupportedCountries();
